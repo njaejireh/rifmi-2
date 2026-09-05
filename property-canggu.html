@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casa del Canggu | Rifmi Properties</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              terracotta: '#A83B1E',
+              burntOrange: '#DC692A',
+              orangePrimary: '#EA580C',
+              orangeHover: '#C2410C',
+              olive: '#75793C',
+              sand: '#E3BE86',
+              softSand: '#FDFCFA',
+              charcoal: '#1A1E1D',
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .flatpickr-calendar,
+    .flatpickr-calendar * {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      box-sizing: border-box;
+    }
+    .flatpickr-calendar {
+      width: 320px !important;
+      background: #ffffff !important;
+      border-radius: 24px !important;
+      border: 1px solid rgba(0, 0, 0, 0.06) !important;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15) !important;
+      padding: 16px !important;
+      box-sizing: border-box !important;
+    }
+    .flatpickr-calendar::before,
+    .flatpickr-calendar::after {
+      display: none !important;
+    }
+    .flatpickr-months {
+      position: relative;
+      margin-bottom: 8px;
+      align-items: center;
+    }
+    .flatpickr-current-month {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 !important;
+      gap: 6px;
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      color: #333d47 !important;
+    }
+    .flatpickr-current-month .cur-month,
+    .flatpickr-current-month .cur-year {
+      font-weight: 700 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    .numInputWrapper span { display: none !important; }
+    .flatpickr-prev-month, .flatpickr-next-month {
+      color: #94a3b8 !important;
+      fill: #94a3b8 !important;
+      padding: 6px !important;
+      top: 2px !important;
+    }
+    .flatpickr-weekdays {
+      height: 28px !important;
+      margin-bottom: 4px !important;
+      width: 100% !important;
+    }
+    span.flatpickr-weekday {
+      color: #a0aec0 !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.05em !important;
+    }
+    .flatpickr-innerContainer,
+    .flatpickr-rContainer,
+    .flatpickr-days,
+    .dayContainer {
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+      overflow: visible !important;
+      box-sizing: border-box !important;
+    }
+    .dayContainer {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: space-between !important;
+    }
+    .flatpickr-day {
+      width: 36px !important;
+      height: 36px !important;
+      line-height: 36px !important;
+      margin: 2px 0 !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      color: #374151 !important;
+      border-radius: 50% !important;
+      border: none !important;
+      box-sizing: border-box !important;
+    }
+    .flatpickr-day:hover { background: #f3f4f6 !important; }
+    .flatpickr-day.prevMonthDay, .flatpickr-day.nextMonthDay { visibility: hidden !important; }
+    
+    .flatpickr-day.flatpickr-disabled,
+    .flatpickr-day.flatpickr-disabled:hover {
+      color: #d1d5db !important;
+      cursor: not-allowed !important;
+      background: transparent !important;
+      font-weight: 400 !important;
+    }
+
+    .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange {
+      background: #EA580C !important;
+      color: #ffffff !important;
+    }
+    .flatpickr-day.inRange {
+      background: #FFEDD5 !important;
+      color: #9A3412 !important;
+      border-radius: 0 !important;
+    }
+    .flatpickr-day.startRange { border-top-left-radius: 50% !important; border-bottom-left-radius: 50% !important; }
+    .flatpickr-day.endRange { border-top-right-radius: 50% !important; border-bottom-right-radius: 50% !important; }
+
+    .modal-scroll::-webkit-scrollbar { width: 6px; }
+    .modal-scroll::-webkit-scrollbar-track { background: transparent; }
+    .modal-scroll::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 9999px; }
+  </style>
+</head>
+<body class="bg-brand-softSand text-brand-charcoal font-sans antialiased text-base">
+
+  <!-- ================= TOP NAVIGATION ================= -->
+  <header class="border-b border-gray-100 bg-white sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center">
+        <img src="images/rifmilogo.png" alt="Rifmi Properties" class="h-12 sm:h-14 w-auto object-contain">
+      </a>
+      <nav class="flex items-center space-x-8 text-sm font-medium text-brand-charcoal">
+        <a href="index.html#properties" class="hover:text-brand-orangePrimary transition-colors">Our Properties</a>
+        <a href="index.html#inquire" class="hover:text-brand-orangePrimary transition-colors">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= PROPERTY CONTENT ================= -->
+  <main class="max-w-6xl mx-auto px-6 pt-6 pb-12">
+
+    <!-- 1. Photo Gallery Grid -->
+    <div class="relative grid grid-cols-1 md:grid-cols-4 gap-3 rounded-2xl overflow-hidden mb-6 h-[320px] sm:h-[360px] md:h-[380px]">
+      <div class="md:col-span-2 h-full rounded-xl overflow-hidden cursor-pointer" onclick="openGalleryModal()">
+        <img src="images/hero-1.jpg" alt="Casa del Canggu Main Lounge" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+      </div>
+      
+      <div class="flex flex-col gap-3 h-full">
+        <div class="h-1/2 rounded-xl overflow-hidden cursor-pointer" onclick="openGalleryModal()">
+          <img src="images/hero-4.jpg" alt="Villa Day Pool" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="h-1/2 rounded-xl overflow-hidden cursor-pointer" onclick="openGalleryModal()">
+          <img src="images/hero-2.jpg" alt="Villa Night Pool" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3 h-full">
+        <div class="h-1/2 rounded-xl overflow-hidden cursor-pointer" onclick="openGalleryModal()">
+          <img src="images/hero-3.jpg" alt="Villa Balcony Sunset" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="h-1/2 rounded-xl overflow-hidden cursor-pointer" onclick="openGalleryModal()">
+          <img src="images/hero-5.jpg" alt="Primary Suite" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+      </div>
+
+      <button type="button" onclick="openGalleryModal()" class="absolute bottom-4 right-4 bg-white/90 hover:bg-white text-brand-charcoal text-xs font-semibold px-4 py-2 rounded-full shadow-lg border border-black/5 flex items-center gap-2 backdrop-blur-md transition-all hover:scale-105">
+        <i data-lucide="grid" class="w-3.5 h-3.5"></i>
+        <span>Show all photos</span>
+      </button>
+    </div>
+
+    <!-- 2. Two-Column Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+      
+      <!-- 1. Title & Description (Mobile: 1st, Desktop: Left Col Top) -->
+      <div class="lg:col-span-2 order-1">
+        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-brand-charcoal mb-2">Casa del Canggu</h1>
+        <p class="text-sm text-gray-500 font-normal mb-5">18 guests · 9 bedrooms · 9.5 baths</p>
+        <p class="text-base text-gray-600 font-light leading-relaxed mb-4">
+          Your whole group will enjoy easy access to everything from this centrally located, modern tropical oasis. You will enjoy complete privacy, a full-size pool, outdoor shower, bbq and kitchen.
+        </p>
+        <p class="text-base text-gray-600 font-light leading-relaxed">
+          We can organise a private chef to take care of your cooking needs should you wish to completely relax. We are five minutes to Pererenan Beach, ten minutes to the bustle of Canggu, and there are plenty of shops, cafes, gyms, restaurants, pilates studios and much more all in walking distance.
+        </p>
+      </div>
+
+      <!-- 2. Booking Card -->
+      <div class="lg:col-span-1 order-2 lg:row-span-2 lg:sticky lg:top-24">
+        <div class="w-full bg-white border border-gray-200/80 rounded-3xl p-5 shadow-xl shadow-black/[0.03]">
+          
+          <!-- Title -->
+          <h2 class="text-base font-bold text-[#0B2341] tracking-normal mb-3">
+            Deluxe Suite Room
+          </h2>
+
+          <!-- Room Preview Image -->
+          <div class="w-full h-32 rounded-2xl bg-[#D9D9D9] mb-4 overflow-hidden">
+            <img src="images/hero-5.jpg" alt="Deluxe Suite Room" class="w-full h-full object-cover">
+          </div>
+
+          <!-- Inputs -->
+          <div class="space-y-2.5 mb-4">
+            
+            <!-- 1. Select Dates Pill -->
+            <div class="w-full bg-white border border-gray-200/90 rounded-full px-4 h-12 flex items-center gap-2.5 shadow-sm hover:border-gray-300 transition-colors">
+              <i data-lucide="calendar" class="w-3.5 h-3.5 text-[#7492A6] shrink-0"></i>
+              <div class="flex flex-col flex-1 min-w-0 justify-center">
+                <span class="text-[9px] uppercase font-bold tracking-wider text-gray-400 leading-none mb-1">Select Dates</span>
+                <input 
+                  type="text" 
+                  id="prop-dates-input" 
+                  placeholder="Add dates" 
+                  readonly 
+                  class="text-sm font-semibold text-[#0B2341] bg-transparent cursor-pointer focus:outline-none placeholder-gray-400 p-0 leading-tight truncate"
+                >
+              </div>
+            </div>
+
+            <!-- 2. Add Guests Pill with Stepper -->
+            <div class="w-full bg-white border border-gray-200/90 rounded-full px-4 h-12 flex items-center justify-between shadow-sm hover:border-gray-300 transition-colors">
+              <div class="flex items-center gap-2.5 min-w-0 flex-1">
+                <i data-lucide="user" class="w-3.5 h-3.5 text-[#7492A6] shrink-0"></i>
+                <div class="flex flex-col min-w-0 justify-center">
+                  <span class="text-[9px] uppercase font-bold tracking-wider text-gray-400 leading-none mb-1">Add Guests</span>
+                  <span id="prop-selected-guests-label" class="text-sm font-semibold text-[#0B2341] leading-tight truncate">2 guests</span>
+                </div>
+              </div>
+
+              <!-- Stepper Buttons -->
+              <div class="flex items-center gap-1.5 shrink-0 ml-2">
+                <button 
+                  type="button" 
+                  onclick="adjustPropGuests(-1)" 
+                  aria-label="Decrease guests"
+                  class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center text-xs text-brand-charcoal hover:border-[#AF431D] hover:text-[#AF431D] transition-colors"
+                >
+                  –
+                </button>
+                <button 
+                  type="button" 
+                  onclick="adjustPropGuests(1)" 
+                  aria-label="Increase guests"
+                  class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center text-xs text-brand-charcoal hover:border-[#AF431D] hover:text-[#AF431D] transition-colors"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. Rooms Dropdown Pill -->
+            <div class="w-full relative bg-white border border-gray-200/90 rounded-full px-4 h-12 flex items-center justify-between shadow-sm hover:border-gray-300 transition-colors cursor-pointer" onclick="toggleBookingRooms()">
+              <div class="flex items-center gap-2.5 min-w-0 flex-1">
+                <i data-lucide="bed" class="w-3.5 h-3.5 text-[#7492A6] shrink-0"></i>
+                <div class="flex flex-col min-w-0 justify-center">
+                  <span class="text-[9px] uppercase font-bold tracking-wider text-gray-400 leading-none mb-1">Rooms</span>
+                  <span id="booking-rooms-label" class="text-sm font-semibold text-[#0B2341] leading-tight truncate">1 room</span>
+                </div>
+              </div>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 shrink-0 ml-1.5"></i>
+
+              <!-- Dynamic Rooms Dropdown Menu -->
+              <div id="booking-rooms-menu" class="hidden absolute top-full left-0 mt-2 w-full bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-30 text-xs max-h-60 overflow-y-auto" onclick="event.stopPropagation()">
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Divider -->
+          <div class="w-full h-px bg-gray-100 my-4"></div>
+
+          <!-- Price Summary -->
+          <div class="mb-4">
+            <div class="flex items-baseline gap-1 mb-1">
+              <span class="text-xs font-normal text-[#0B2341]">Total price</span>
+              <span id="price-sub-unit" class="text-[11px] text-gray-400 font-medium">(1 night x 1 room)</span>
+            </div>
+            <div id="main-price" class="text-xl font-bold text-[#0B2341] tracking-tight">
+              $87 AUD
+            </div>
+          </div>
+
+          <!-- Reserve Action Button -->
+          <button 
+            type="submit" 
+            id="reserve-btn"
+            class="w-full bg-[#AF431D] hover:bg-[#8F3516] text-white py-3.5 rounded-full font-semibold text-xs transition-colors shadow-sm"
+          >
+            Reserve
+          </button>
+
+        </div>
+      </div>
+
+      <!-- 3. Amenities, Things to Know, & Map (Mobile: 3rd, Desktop: Left Col Bottom) -->
+      <div class="lg:col-span-2 order-3 space-y-10">
+        
+        <!-- Amenities Section -->
+        <div class="pt-8 border-t border-gray-200/80">
+          <h2 class="font-semibold text-lg text-brand-charcoal mb-5">Amenities</h2>
+          
+          <div id="property1-amenities-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-3.5"></div>
+
+          <button type="button" onclick="openAmenitiesModal()" class="mt-6 px-6 py-2.5 rounded-full border border-brand-orangePrimary text-brand-orangePrimary text-xs font-semibold hover:bg-orange-50 transition-colors">
+            Show all amenities
+          </button>
+        </div>
+
+        <!-- Things to know -->
+        <div class="pt-8 border-t border-gray-200/80">
+          <h2 class="font-semibold text-lg text-brand-charcoal mb-6">Things to know</h2>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm">
+            <!-- House rules -->
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="key-round" class="w-4 h-4 text-brand-charcoal stroke-[1.5]"></i>
+                <h3 class="font-semibold text-brand-charcoal">House rules</h3>
+              </div>
+              <p class="text-gray-500 font-light leading-relaxed">
+                Check-in after 3:00 pm<br>
+                Checkout before 11:00 am<br>
+                No pets
+              </p>
+              <button type="button" onclick="openHouseRulesModal()" class="mt-3 text-xs font-semibold text-brand-charcoal underline underline-offset-4 hover:text-brand-orangePrimary transition-colors">
+                Learn more
+              </button>
+            </div>
+
+            <!-- Safety & property -->
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <i data-lucide="shield-check" class="w-4 h-4 text-brand-charcoal stroke-[1.5]"></i>
+                <h3 class="font-semibold text-brand-charcoal">Safety & property</h3>
+              </div>
+              <p class="text-gray-500 font-light leading-relaxed">
+                No carbon monoxide alarm<br>
+                No smoke alarm<br>
+                Exterior security cameras on property
+              </p>
+              <button type="button" onclick="openSafetyModal()" class="mt-3 text-xs font-semibold text-brand-charcoal underline underline-offset-4 hover:text-brand-orangePrimary transition-colors">
+                Learn more
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="pt-8 border-t border-gray-200/80">
+          <h2 class="font-semibold text-lg text-brand-charcoal mb-2">Where you'll be</h2>
+          <p class="text-xs text-gray-500 font-light mb-4">Jl. Sempol No.27, Pererenan, Mengwi, Badung Regency, Bali 80351, Indonesia</p>
+          
+          <div class="w-full h-80 rounded-3xl overflow-hidden shadow-sm border border-gray-100">
+            <iframe 
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              loading="lazy" 
+              allowfullscreen 
+              referrerpolicy="no-referrer-when-downgrade" 
+              src="https://maps.google.com/maps?q=-8.636850,115.136142(Casa%20Del%20Canggu)&z=16&output=embed">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ================= OUR OTHER PROPERTIES ================= -->
+    <section class="mt-20 pt-12 border-t border-gray-200/80 max-w-6xl mx-auto">
+      <div class="mb-10">
+        <p class="text-xs uppercase tracking-widest font-semibold text-[#EA580C] mb-2">The Collection</p>
+        <h2 class="font-serif text-3xl sm:text-4xl text-brand-charcoal">Our Other Properties</h2>
+      </div>
+
+      <div class="max-w-xl">
+        <!-- PROPERTY 2: CASA DEL CANGGU 2 -->
+        <a href="property-canggu-2.html" class="bg-white border border-[#F6F6F6] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer block">
+          <div class="relative h-80 overflow-hidden">
+            <img src="images/canggu2-7.jpg" alt="Casa del Canggu 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <span class="absolute top-4 left-4 bg-brand-charcoal/75 backdrop-blur-sm text-white text-[10px] uppercase tracking-widest font-semibold px-3.5 py-2 rounded-full border border-white/20 leading-none">
+              Coastal Canggu
+            </span>
+            <span class="absolute top-4 right-4 bg-[#F97316] text-white text-[10px] font-semibold px-3 py-2 rounded-full shadow-sm leading-none">
+              15% Off Promo
+            </span>
+          </div>
+          
+          <div class="p-8 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-baseline justify-between mb-1.5">
+                <h3 class="font-serif text-3xl font-bold text-brand-charcoal group-hover:text-[#EA580C] transition-colors">Casa del Canggu 2</h3>
+              </div>
+              <p class="text-xs text-gray-500 mb-5">Pererenan, Canggu</p>
+              
+              <div class="flex flex-wrap gap-2 text-[11px] text-brand-charcoal/80 mb-6 leading-none">
+                <span class="text-[#7996A8] bg-white border border-[#7996A8]/50 px-3 py-2 rounded-full leading-none">8 Guests</span>
+                <span class="text-[#7996A8] bg-white border border-[#7996A8]/50 px-3 py-2 rounded-full leading-none">3 bedrooms</span>
+                <span class="text-[#7996A8] bg-white border border-[#7996A8]/50 px-3 py-2 rounded-full leading-none">Private Pool</span>
+                <span class="text-[#7996A8] bg-white border border-[#7996A8]/50 px-3 py-2 rounded-full leading-none">Rooftop Lounge</span>
+              </div>
+
+              <p class="text-xs text-gray-600 font-light leading-relaxed mb-6">
+                Boutique modern retreat offering quiet luxury, a rooftop lounge area, private pool, and open gathering spaces.
+              </p>
+            </div>
+
+            <div class="pt-5 border-t border-gray-100 flex items-center justify-between">
+              <div>
+                <span class="text-[11px] text-gray-400 block font-light">From</span>
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-sm text-gray-400 line-through font-light">$350</span>
+                  <span class="font-bold text-xl text-brand-charcoal">$297.5</span>
+                  <span class="text-xs text-gray-500">AUD / night</span>
+                </div>
+              </div>
+              <span class="border border-[#EA580C] text-[#EA580C] group-hover:bg-orange-50 group-hover:border-[#C2410C] group-hover:text-[#C2410C] px-6 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all inline-block">
+                Explore Villa
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>    
+
+  </main>
+
+  <!-- ================= HOUSE RULES MODAL ================= -->
+  <div id="house-rules-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6">
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeHouseRulesModal()"></div>
+
+    <div class="relative bg-white w-full max-w-lg max-h-[85vh] rounded-[32px] shadow-2xl z-10 flex flex-col overflow-hidden">
+      <div class="p-6 pb-2 flex items-center justify-start">
+        <button type="button" onclick="closeHouseRulesModal()" class="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-700 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 pt-2 overflow-y-auto modal-scroll space-y-6 flex-1">
+        <div>
+          <h2 class="text-2xl font-bold text-brand-charcoal mb-1">House rules</h2>
+          <p class="text-xs text-gray-500 font-light">You'll be staying in someone's home, so please treat it with care and respect.</p>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-sm text-brand-charcoal mb-3">Checking in and out</h3>
+          <div class="divide-y divide-gray-100 text-sm text-brand-charcoal">
+            <div class="py-3 flex items-center gap-4">
+              <i data-lucide="clock" class="w-5 h-5 text-gray-700 shrink-0 stroke-[1.5]"></i>
+              <span>Check-in after 3:00 pm</span>
+            </div>
+            <div class="py-3 flex items-center gap-4">
+              <i data-lucide="clock" class="w-5 h-5 text-gray-700 shrink-0 stroke-[1.5]"></i>
+              <span>Checkout before 11:00 am</span>
+            </div>
+            <div class="py-3 flex items-center gap-4">
+              <i data-lucide="door-closed" class="w-5 h-5 text-gray-700 shrink-0 stroke-[1.5]"></i>
+              <span>Self check-in with building staff</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-sm text-brand-charcoal mb-3">During your stay</h3>
+          <div class="divide-y divide-gray-100 text-sm text-brand-charcoal">
+            <div class="py-3 flex items-center gap-4">
+              <i data-lucide="ban" class="w-5 h-5 text-gray-700 shrink-0 stroke-[1.5]"></i>
+              <span>No pets</span>
+            </div>
+            <div class="py-3 flex items-center gap-4">
+              <i data-lucide="cigarette" class="w-5 h-5 text-gray-700 stroke-[1.5]"></i>
+              <span>Smoking is allowed</span>
+            </div>
+            <div class="py-4 flex items-start gap-4">
+              <i data-lucide="clipboard-list" class="w-5 h-5 text-gray-700 shrink-0 stroke-[1.5] mt-0.5"></i>
+              <div>
+                <p class="font-semibold mb-1">Additional rules</p>
+                <p class="text-xs text-gray-500 font-light leading-relaxed mb-2">
+                  Please be mindful that this is a shared property and be respectful of other guests.
+                </p>
+                <p class="text-xs text-gray-500 font-light leading-relaxed">
+                  You are welcome to smoke outside on your private balcony, but we have a strict no smoking policy in the room. Should you smoke in the room and it results in burns or a bad smell, there will be an additional charge.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= SAFETY & PROPERTY MODAL ================= -->
+  <div id="safety-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6">
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeSafetyModal()"></div>
+
+    <div class="relative bg-white w-full max-w-lg max-h-[85vh] rounded-[32px] shadow-2xl z-10 flex flex-col overflow-hidden">
+      <div class="p-6 pb-2 flex items-center justify-start">
+        <button type="button" onclick="closeSafetyModal()" class="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-700 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 pt-2 overflow-y-auto modal-scroll space-y-6 flex-1">
+        <div>
+          <h2 class="text-2xl font-bold text-brand-charcoal mb-1">Safety & property</h2>
+          <p class="text-xs text-gray-500 font-light">Avoid surprises by looking over these important details about your host's property.</p>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-sm text-brand-charcoal mb-3">Safety considerations</h3>
+          <div class="py-3 flex items-start gap-4 text-sm text-brand-charcoal">
+            <i data-lucide="baby" class="w-5 h-5 text-gray-700 stroke-[1.5] mt-0.5"></i>
+            <div>
+              <p class="font-medium text-brand-charcoal leading-none mb-1">Not suitable for children and infants</p>
+              <p class="text-xs text-gray-400 font-light">'No children allowed'</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-sm text-brand-charcoal mb-3">Safety devices</h3>
+          <div class="divide-y divide-gray-100 text-sm text-brand-charcoal">
+            <div class="py-3.5 flex items-start gap-4">
+              <i data-lucide="camera" class="w-5 h-5 text-gray-700 shrink-0 stroke-[1.5] mt-0.5"></i>
+              <div>
+                <p class="font-medium text-brand-charcoal leading-none mb-1">Exterior security cameras on property</p>
+                <p class="text-xs text-gray-400 font-light">'Security cameras cover external common areas only.'</p>
+              </div>
+            </div>
+            <div class="py-3.5 flex items-center gap-4">
+              <i data-lucide="shield-alert" class="w-5 h-5 text-gray-700 shrink-0 stroke-[1.5]"></i>
+              <span>No carbon monoxide alarm</span>
+            </div>
+            <div class="py-3.5 flex items-center gap-4">
+              <i data-lucide="bell-off" class="w-5 h-5 text-gray-700 shrink-0 stroke-[1.5]"></i>
+              <span>No smoke alarm</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= AMENITIES MODAL ================= -->
+  <div id="amenities-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6">
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closeAmenitiesModal()"></div>
+
+    <div class="relative bg-white w-full max-w-2xl max-h-[85vh] rounded-[32px] shadow-2xl z-10 flex flex-col overflow-hidden">
+      <div class="p-6 pb-3 border-b border-gray-100 flex items-center justify-between">
+        <h2 class="text-xl font-bold text-brand-charcoal">Amenities</h2>
+        <button type="button" onclick="closeAmenitiesModal()" class="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-700 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div id="modal-amenities-container" class="p-6 overflow-y-auto modal-scroll space-y-8 flex-1"></div>
+    </div>
+  </div>
+
+  <!-- ================= FULL PHOTO GALLERY MODAL ================= -->
+  <div id="gallery-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6">
+    <div class="fixed inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeGalleryModal()"></div>
+
+    <div class="relative bg-white w-full max-w-4xl max-h-[90vh] rounded-[32px] shadow-2xl z-10 flex flex-col overflow-hidden">
+      <div class="p-6 pb-4 flex items-center justify-between border-b border-gray-100">
+        <h2 class="text-xl font-bold text-brand-charcoal">Casa del Canggu Photos</h2>
+        <button type="button" onclick="closeGalleryModal()" class="w-9 h-9 rounded-full hover:bg-gray-100 flex items-center justify-center text-gray-700 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto modal-scroll space-y-4 flex-1">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <img src="images/hero-1.jpg" alt="Lounge Area" class="w-full h-72 object-cover rounded-2xl">
+          <img src="images/hero-2.jpg" alt="Pool Area Night" class="w-full h-72 object-cover rounded-2xl">
+          <img src="images/hero-3.jpg" alt="Sunset Balcony" class="w-full h-72 object-cover rounded-2xl">
+          <img src="images/hero-4.jpg" alt="Main Garden Pool" class="w-full h-72 object-cover rounded-2xl">
+          <img src="images/hero-5.jpg" alt="Master Bedroom" class="w-full h-72 object-cover rounded-2xl">
+          <img src="images/hero-6.jpg" alt="Outdoor Kitchen" class="w-full h-72 object-cover rounded-2xl">
+          <img src="images/hero-7.jpg" alt="Dining Space" class="w-full h-72 object-cover rounded-2xl">
+          <img src="images/hero-8.jpg" alt="Ensuite Bathroom" class="w-full h-72 object-cover rounded-2xl">
+          <img src="images/hero-9.jpg" alt="Sunken Lounge" class="w-full h-72 object-cover rounded-2xl">
+          <img src="images/hero-10.jpg" alt="Villa Aerial View" class="w-full h-72 object-cover rounded-2xl">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-brand-charcoal border-t border-white/10 py-10 px-6 text-center text-xs text-gray-500 mt-20">
+    <p>© 2026 Rifmi Properties Bali. All rights reserved.</p>
+  </footer>
+
+  <!-- ================= SCRIPT LOGIC ================= -->
+  <script src="amenities-data.js"></script>
+  <script>
+    lucide.createIcons();
+
+    // Property 1 Amenities Data
+    const PROPERTY_1_AMENITIES_PREVIEW = [
+      { icon: "waves-ladder", title: "Private pool" },
+      { icon: "utensils", title: "Outdoor kitchen" },
+      { icon: "parasol", title: "Beach access" },
+      { icon: "wifi", title: "Fast Wi-Fi" },
+      { icon: "shower-head", title: "Outdoor shower" },
+      { icon: "laptop", title: "Dedicated workspace" }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderPropertyAmenitiesGrid('property1-amenities-grid', PROPERTY_1_AMENITIES_PREVIEW);
+      updateRoomsDropdownUI();
+    });
+
+    const RATE_PER_ROOM_PER_NIGHT = 86.67; // $780 / 9 rooms
+    const reserveBtn = document.getElementById('reserve-btn');
+
+    let currentNights = 1;
+    let selectedRoomsCount = 1;
+
+    // Dynamic rebuild of dropdown based on selected nights and minimum required rooms (2 guests per room)
+    function updateRoomsDropdownUI() {
+      const menu = document.getElementById('booking-rooms-menu');
+      if (!menu) return;
+
+      const minRequiredRooms = Math.min(9, Math.ceil(propGuestCount / 2));
+      let menuHtml = '';
+
+      for (let i = minRequiredRooms; i <= 9; i++) {
+        const totalForRooms = Math.round(i * RATE_PER_ROOM_PER_NIGHT * currentNights);
+        menuHtml += `
+          <div onclick="selectBookingRooms(${i})" class="px-3.5 py-2.5 rounded-xl hover:bg-gray-50 flex items-center justify-between cursor-pointer text-brand-charcoal font-medium">
+            <span>${i} room${i > 1 ? 's' : ''} ($${totalForRooms.toLocaleString()} AUD)</span>
+          </div>
+        `;
+      }
+      menu.innerHTML = menuHtml;
+
+      // Update selected pill label (room count only)
+      const label = document.getElementById('booking-rooms-label');
+      if (label) {
+        label.innerText = `${selectedRoomsCount} room${selectedRoomsCount > 1 ? 's' : ''}`;
+      }
+    }
+
+    function updatePrice(startDate, endDate) {
+      const mainEl = document.getElementById("main-price");
+      const subUnitEl = document.getElementById("price-sub-unit");
+
+      if (startDate && endDate) {
+        const diffTime = Math.abs(endDate - startDate);
+        currentNights = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+      }
+
+      const total = Math.round(selectedRoomsCount * RATE_PER_ROOM_PER_NIGHT * currentNights);
+
+      if (mainEl) mainEl.innerText = `$${total.toLocaleString()} AUD`;
+      if (subUnitEl) subUnitEl.innerText = `(${currentNights} night${currentNights > 1 ? 's' : ''} x ${selectedRoomsCount} room${selectedRoomsCount > 1 ? 's' : ''})`;
+      
+      if (reserveBtn) {
+        reserveBtn.disabled = false;
+        reserveBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+      }
+
+      updateRoomsDropdownUI();
+    }
+
+    // Flatpickr Initializer
+    let datePicker = null;
+    const dateInputEl = document.getElementById("prop-dates-input");
+    if (dateInputEl && typeof flatpickr !== 'undefined') {
+      datePicker = flatpickr("#prop-dates-input", {
+        mode: "range",
+        minDate: "today",
+        position: "auto center",
+        dateFormat: "D, M j",
+        locale: { rangeSeparator: " - " },
+        onChange: function(selectedDates) {
+          if (selectedDates.length === 2) {
+            updatePrice(selectedDates[0], selectedDates[1]);
+          }
+        }
+      });
+    }
+
+    // Guest Stepper with automatic room fitting (max 2 guests per room)
+    let propGuestCount = 2;
+
+    function adjustPropGuests(delta) {
+      propGuestCount = Math.max(1, Math.min(18, propGuestCount + delta));
+      const labelEl = document.getElementById('prop-selected-guests-label');
+      if (labelEl) labelEl.innerText = `${propGuestCount} guest${propGuestCount > 1 ? 's' : ''}`;
+
+      // Automatically compute minimum required rooms so everyone fits (max 2 per room)
+      const minRequiredRooms = Math.min(9, Math.ceil(propGuestCount / 2));
+      if (selectedRoomsCount < minRequiredRooms) {
+        selectedRoomsCount = minRequiredRooms;
+      }
+
+      updateRoomsDropdownUI();
+      updatePrice();
+    }
+
+    // Rooms Dropdown Logic
+    function toggleBookingRooms() {
+      const menu = document.getElementById('booking-rooms-menu');
+      if (menu) menu.classList.toggle('hidden');
+    }
+
+    function selectBookingRooms(count) {
+      selectedRoomsCount = count;
+      updateRoomsDropdownUI();
+      updatePrice();
+      const menu = document.getElementById('booking-rooms-menu');
+      if (menu) menu.classList.add('hidden');
+    }
+
+    document.addEventListener('click', (e) => {
+      const container = e.target.closest('[onclick*="toggleBookingRooms"]');
+      if (!container) {
+        const menu = document.getElementById('booking-rooms-menu');
+        if (menu) menu.classList.add('hidden');
+      }
+    });
+
+    // Synchronize URL Search Parameters & Refresh
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const checkin = urlParams.get('checkin');
+      const checkout = urlParams.get('checkout');
+      const passedGuests = urlParams.get('guests');
+
+      if (passedGuests) {
+        const parsed = parseInt(passedGuests, 10);
+        if (!isNaN(parsed) && parsed >= 1 && parsed <= 18) {
+          propGuestCount = parsed;
+          const labelEl = document.getElementById('prop-selected-guests-label');
+          if (labelEl) labelEl.innerText = `${propGuestCount} guest${propGuestCount > 1 ? 's' : ''}`;
+
+          const minRequiredRooms = Math.min(9, Math.ceil(propGuestCount / 2));
+          if (selectedRoomsCount < minRequiredRooms) {
+            selectedRoomsCount = minRequiredRooms;
+          }
+        }
+      }
+
+      if (checkin && checkout && datePicker) {
+        const d1 = new Date(checkin.includes('T') ? checkin : `${checkin}T00:00:00`);
+        const d2 = new Date(checkout.includes('T') ? checkout : `${checkout}T00:00:00`);
+
+        if (!isNaN(d1.getTime()) && !isNaN(d2.getTime())) {
+          datePicker.setDate([d1, d2], false);
+          updatePrice(d1, d2);
+        }
+      } else {
+        updatePrice();
+      }
+    });
+
+    // Modal Handlers
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        if (window.lucide) window.lucide.createIcons();
+      }
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function openAmenitiesModal() {
+      if (typeof renderAmenities === 'function') {
+        renderAmenities();
+      }
+      openModal('amenities-modal');
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    }
+    function closeAmenitiesModal() { closeModal('amenities-modal'); }
+
+    function openGalleryModal() { openModal('gallery-modal'); }
+    function closeGalleryModal() { closeModal('gallery-modal'); }
+
+    function openHouseRulesModal() { openModal('house-rules-modal'); }
+    function closeHouseRulesModal() { closeModal('house-rules-modal'); }
+
+    function openSafetyModal() { openModal('safety-modal'); }
+    function closeSafetyModal() { closeModal('safety-modal'); }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        ['amenities-modal', 'gallery-modal', 'house-rules-modal', 'safety-modal'].forEach(closeModal);
+      }
+    });
+  </script>
+</body>
+</html>

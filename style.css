@@ -1,0 +1,89 @@
+/* Universal Font Inheritance */
+input, textarea, select, button {
+  font-family: inherit;
+}
+
+/* Uniform Primary Button */
+.btn-primary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #AF431D !important;
+  color: #ffffff !important;
+  font-family: inherit !important;
+  font-weight: 500 !important;
+  font-size: 0.875rem !important;
+  border-radius: 9999px !important;
+  padding: 0.875rem 2rem !important;
+  transition: all 0.2s ease-in-out !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  cursor: pointer !important;
+  border: 1px solid transparent !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+.btn-primary:hover {
+  background-color: #8F3516 !important;
+}
+
+.btn-primary:disabled {
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+}
+
+/* Secondary Button - Light Mode Default */
+.btn-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: transparent !important;
+  color: #AF431D !important;
+  border: 1px solid #AF431D !important;
+  font-family: inherit !important;
+  font-weight: 500 !important;
+  font-size: 0.875rem !important;
+  border-radius: 9999px !important;
+  padding: 0.875rem 2rem !important;
+  transition: all 0.2s ease-in-out !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(175, 67, 29, 0.08) !important;
+  border-color: #8F3516 !important;
+  color: #8F3516 !important;
+}
+
+/* Secondary Button - Dark Mode (Hero) */
+.btn-secondary-dark {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important;
+  font-family: inherit !important;
+  font-weight: 500 !important;
+  font-size: 0.875rem !important;
+  border-radius: 9999px !important;
+  padding: 0.875rem 2rem !important;
+  transition: all 0.2s ease-in-out !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+.btn-secondary-dark:hover {
+  background-color: #ffffff !important;
+  color: #1A1E1D !important;
+}
+
+/* Full Width Button Variant */
+.btn-primary-full {
+  width: 100% !important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}

@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rifmi Properties | Luxury Boutique Stays in Bali</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              terracotta: '#AF431D',
+              burntOrange: '#DC692A',
+              olive: '#75793C',
+              sand: '#E3BE86',
+              softSand: '#F9F6F0',
+              slateBlue: '#7492A6',
+              charcoal: '#1A1E1D',
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Global Font & Popover Card Container */
+    .flatpickr-calendar,
+    .flatpickr-calendar * {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      box-sizing: border-box;
+    }
+    .flatpickr-calendar {
+      width: 320px !important;
+      background: #ffffff !important;
+      border-radius: 24px !important;
+      border: 1px solid rgba(0, 0, 0, 0.06) !important;
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15) !important;
+      padding: 16px !important;
+    }
+    .flatpickr-calendar::before,
+    .flatpickr-calendar::after {
+      display: none !important;
+    }
+
+    .flatpickr-months {
+      position: relative;
+      margin-bottom: 8px;
+      align-items: center;
+    }
+    .flatpickr-current-month {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 !important;
+      gap: 6px;
+      font-size: 16px !important;
+      font-weight: 700 !important;
+      color: #333d47 !important;
+    }
+    .flatpickr-current-month .cur-month,
+    .flatpickr-current-month .cur-year {
+      font-weight: 700 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    .numInputWrapper span {
+      display: none !important;
+    }
+
+    .flatpickr-prev-month, 
+    .flatpickr-next-month {
+      color: #94a3b8 !important;
+      fill: #94a3b8 !important;
+      padding: 6px !important;
+      top: 2px !important;
+    }
+
+    .flatpickr-weekdays {
+      height: 28px !important;
+      margin-bottom: 4px !important;
+      width: 100% !important;
+    }
+    span.flatpickr-weekday {
+      color: #a0aec0 !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.05em !important;
+    }
+
+    .flatpickr-innerContainer,
+    .flatpickr-rContainer,
+    .flatpickr-days,
+    .dayContainer {
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+      overflow: visible !important;
+    }
+    .dayContainer {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: space-between !important;
+    }
+    .flatpickr-day {
+      width: 36px !important;
+      height: 36px !important;
+      line-height: 36px !important;
+      margin: 2px 0 !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      color: #374151 !important;
+      border-radius: 50% !important;
+      border: none !important;
+    }
+    .flatpickr-day:hover {
+      background: #f3f4f6 !important;
+    }
+
+    .flatpickr-day.prevMonthDay, 
+    .flatpickr-day.nextMonthDay {
+      visibility: hidden !important;
+    }
+    .flatpickr-day.flatpickr-disabled {
+      color: #d1d5db !important;
+      cursor: not-allowed !important;
+    }
+
+    .flatpickr-day.selected,
+    .flatpickr-day.startRange,
+    .flatpickr-day.endRange {
+      background: #AF431D !important;
+      color: #ffffff !important;
+    }
+
+    .flatpickr-day.inRange {
+      background: #FFEDD5 !important;
+      color: #9A3412 !important;
+      border-radius: 0 !important;
+    }
+    .flatpickr-day.startRange {
+      border-top-left-radius: 50% !important;
+      border-bottom-left-radius: 50% !important;
+    }
+    .flatpickr-day.endRange {
+      border-top-right-radius: 50% !important;
+      border-bottom-right-radius: 50% !important;
+    }
+
+    /* Modal Custom Scrollbar */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1; 
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8; 
+    }
+  </style>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-[#FFFEFB] text-brand-charcoal font-sans antialiased selection:bg-brand-sand selection:text-brand-charcoal">
+
+ <!-- ================= TOP NAVIGATION ================= -->
+  <header class="absolute top-0 left-0 right-0 z-40 pt-6">
+    <div class="max-w-6xl mx-auto px-6 h-20 relative flex items-center justify-between">
+      
+      <!-- Logo (Left) -->
+      <div class="flex items-center">
+        <a href="index.html" class="flex items-center shrink-0">
+          <img src="images/rifmilogo.png" alt="Rifmi Properties" class="h-16 sm:h-20 w-auto object-contain drop-shadow-md brightness-110">
+        </a>
+      </div>
+
+      <!-- Contact Us Button (Right) -->
+      <div class="flex items-center">
+        <a href="#inquire" class="px-5 py-2.5 sm:px-6 sm:py-2.5 rounded-full border border-white text-white text-[11px] sm:text-xs font-semibold tracking-wide hover:bg-white hover:text-brand-charcoal transition-colors backdrop-blur-sm shadow-sm">
+          Contact Us
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <div class="relative w-full z-20">
+
+    <section class="relative h-screen min-h-[640px] w-full overflow-hidden z-0">
+      
+      <div class="absolute inset-0 z-0 overflow-hidden">
+        <video 
+          autoplay 
+          loop 
+          muted 
+          playsinline 
+          poster="images/hero-1.jpg"
+          class="w-full h-full object-cover scale-105"
+        >
+          <source src="videos/hero-video.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 50%, rgba(0, 0, 0, 0) 100%);"></div>
+      </div>
+
+      <div class="absolute inset-0 z-20 flex items-center justify-center px-6 pb-32" style="padding-top: 40px;">
+        <div class="max-w-5xl w-full mx-auto text-center text-white flex flex-col items-center">
+          
+          <div class="max-w-3xl mx-auto drop-shadow-md">
+            <span class="inline-block px-4 py-2 rounded-full bg-white/10 text-[#E9C891] text-xs font-semibold uppercase tracking-widest backdrop-blur-md mb-6">
+              Exclusive Bali Sanctuary Collection
+            </span>
+            <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl leading-[1.1] font-normal mb-6">
+              Extraordinary Stays for <br><span class="italic font-light">Unforgettable Journeys</span>
+            </h1>
+            <p class="text-xs sm:text-sm md:text-base text-white/90 max-w-2xl mx-auto font-light leading-relaxed">
+              Thoughtfully designed private sanctuaries where architecture, comfort, and coastal stillness meet.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="sticky top-[160px] z-50 w-full flex justify-center -mt-[200px] px-4 sm:px-6">
+      <div class="flex flex-col lg:flex-row items-center justify-center gap-3 w-full max-w-4xl drop-shadow-2xl">
+        
+        <div class="w-full lg:w-64 bg-white rounded-full px-5 h-14 flex items-center gap-3 cursor-pointer border border-transparent hover:border-gray-200 transition-colors">
+          <i data-lucide="calendar" class="w-4 h-4 text-[#7492A6] shrink-0"></i>
+          <div class="flex flex-col text-left flex-1 min-w-0">
+            <span class="text-[9px] uppercase font-bold tracking-wider text-gray-400 mb-0.5">Select Dates</span>
+            <input 
+              type="text" 
+              id="index-dates-input" 
+              placeholder="Add dates" 
+              readonly 
+              class="text-xs font-semibold text-[#0B2341] bg-transparent cursor-pointer focus:outline-none p-0 truncate w-full"
+            >
+          </div>
+        </div>
+
+        <div class="w-full lg:w-56 bg-white rounded-full px-5 h-14 flex items-center justify-between border border-transparent hover:border-gray-200 transition-colors">
+          <div class="flex items-center gap-3 flex-1 min-w-0">
+            <i data-lucide="user" class="w-4 h-4 text-[#7492A6] shrink-0"></i>
+            <div class="flex flex-col text-left min-w-0">
+              <span class="text-[9px] uppercase font-bold tracking-wider text-gray-400 mb-0.5">Add Guests</span>
+              <span id="index-guests-label" class="text-xs font-semibold text-[#0B2341] truncate">2 guests</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0 ml-2">
+            <button type="button" onclick="adjustIndexGuests(-1)" class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center text-xs text-brand-charcoal hover:border-brand-terracotta hover:text-brand-terracotta transition-colors cursor-pointer">–</button>
+            <button type="button" onclick="adjustIndexGuests(1)" class="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center text-xs text-brand-charcoal hover:border-brand-terracotta hover:text-brand-terracotta transition-colors cursor-pointer">+</button>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-48 relative bg-white rounded-full px-5 h-14 flex items-center justify-between cursor-pointer border border-transparent hover:border-gray-200 transition-colors" onclick="toggleIndexRooms()">
+          <div class="flex items-center gap-3 flex-1 min-w-0">
+            <i data-lucide="bed" class="w-4 h-4 text-[#7492A6] shrink-0"></i>
+            <div class="flex flex-col text-left min-w-0">
+              <span class="text-[9px] uppercase font-bold tracking-wider text-gray-400 mb-0.5">Rooms</span>
+              <span id="index-rooms-label" class="text-xs font-semibold text-[#0B2341] truncate">1 room</span>
+            </div>
+          </div>
+          <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 shrink-0 ml-1"></i>
+          
+          <div id="index-rooms-menu" class="hidden absolute top-full left-0 mt-2 w-full bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-50 text-xs max-h-60 overflow-y-auto" onclick="event.stopPropagation()"></div>
+        </div>
+
+        <a href="#collection-target" class="w-14 h-14 rounded-full bg-brand-terracotta text-white flex items-center justify-center hover:bg-[#8F3516] transition-colors shrink-0 shadow-lg cursor-pointer mx-auto lg:mx-0">
+          <i data-lucide="search" class="w-5 h-5"></i>
+        </a>
+
+      </div>
+    </div>
+
+    <div class="h-[14vh] bg-[#FFFEFB] w-full mt-[144px]"></div>
+
+    <div id="collection-target" class="scroll-mt-[40px] h-[80px] flex flex-col items-center justify-center bg-[#FFFEFB] relative z-20">
+      <span class="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#AF431D] block mb-2">The Collection</span>
+      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-brand-charcoal tracking-tight leading-none m-0">Our Bali Sanctuaries</h2>
+    </div>
+
+    <div class="h-[96px] bg-[#FFFEFB] w-full relative z-10"></div>
+
+  </div>
+
+  <section id="properties" class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 md:pt-16 pb-16 md:pb-24 relative z-0">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+      
+      <div id="card1-container" class="bg-white border border-gray-200/80 rounded-2xl p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+        
+        <div id="card1-main-content" class="transition-opacity duration-300">
+          <div class="w-full h-52 rounded-xl overflow-hidden bg-gray-100 mb-4 shrink-0">
+            <img src="images/hero-1.jpg" alt="Casa del Canggu" class="w-full h-full object-cover">
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="font-serif text-2xl sm:text-3xl text-brand-charcoal font-normal tracking-tight">
+              Casa del Canggu
+            </h2>
+          </div>
+
+          <div class="flex flex-wrap gap-1.5 mt-2.5 mb-3">
+            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Up to 18 guests</span>
+            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">9 Ensuite suites</span>
+            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Large pool</span>
+            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Outdoor kitchen & BBQ</span>
+          </div>
+
+          <p class="text-xs text-gray-500 leading-relaxed font-light mb-4 line-clamp-2">
+            An expansive private estate built for retreats and large group gatherings, featuring an open-air culinary grill area, generous pool grounds, and communal dining.
+          </p>
+
+          <div class="border border-gray-200/80 rounded-2xl p-3.5 bg-white">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-11 h-11 rounded-lg bg-gray-200 overflow-hidden shrink-0">
+                  <img src="images/hero-5.jpg" alt="Deluxe Suite room" class="w-full h-full object-cover">
+                </div>
+                <div class="min-w-0">
+                  <h4 class="font-semibold text-sm text-brand-charcoal truncate">Deluxe Suite room</h4>
+                  <div class="flex items-center flex-wrap gap-2 text-xs text-gray-500 font-normal mt-1 leading-none">
+                    <span class="inline-flex items-center gap-1">
+                      <i data-lucide="bed-double" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                      <span>Queen bed</span>
+                    </span>
+                    <span class="text-gray-300">·</span>
+                    <span class="inline-flex items-center gap-1">
+                      <i data-lucide="users" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                      <span>2 pax</span>
+                    </span>
+                    <span class="text-gray-300">·</span>
+                    <span class="inline-flex items-center gap-1">
+                      <i data-lucide="bath" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                      <span>Private bathroom</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="shrink-0 pl-2">
+                <span class="text-[11px] font-medium text-gray-500 bg-gray-50 border border-gray-200/80 px-2.5 py-1 rounded-full whitespace-nowrap">
+                  9 available
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 mt-4 border-t border-gray-100">
+          <div id="card1-price-area" class="transition-opacity duration-300">
+            <div class="flex items-baseline gap-1 mb-0.5">
+              <span class="text-xs font-normal text-[#0B2341]">Total price</span>
+              <span id="card1-sub-unit" class="text-[11px] text-gray-400 font-medium">(1 night x 1 room)</span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span id="card1-price" class="text-xl font-bold text-brand-charcoal">$87</span>
+              <span class="text-[11px] text-[#64748B] font-medium">AUD</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5">
+            <div id="card1-capacity-warning" class="hidden items-center gap-1.5 px-3 py-2 bg-amber-50 border border-amber-200 rounded-full text-[10px] text-amber-800 font-semibold cursor-pointer hover:bg-amber-100 transition-colors" onclick="adjustIndexGuestsTo(18)">
+              <i data-lucide="info" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
+              <span>Max 18 guests</span>
+            </div>
+            <a id="card1-btn" href="property-canggu.html" class="btn-secondary !py-2.5 !px-6 !text-xs font-semibold">
+              Explore Villa
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="card2-container" class="bg-white border border-gray-200/80 rounded-2xl p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+        
+        <div id="card2-main-content" class="transition-opacity duration-300">
+          <div class="w-full h-52 rounded-xl overflow-hidden bg-gray-100 mb-4 shrink-0">
+            <img src="images/canggu2-13.jpg" alt="Casa del Canggu 2" class="w-full h-full object-cover">
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="font-serif text-2xl sm:text-3xl text-brand-charcoal font-normal tracking-tight">
+              Casa del Canggu 2
+            </h2>
+          </div>
+
+          <div class="flex flex-wrap gap-1.5 mt-2.5 mb-3">
+            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Up to 8 guests</span>
+            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">4 Ensuite suites</span>
+            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Intimate plunge pool</span>
+            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Indoor equipped kitchen</span>
+          </div>
+
+          <p class="text-xs text-gray-500 leading-relaxed font-light mb-4 line-clamp-2">
+            A cozy, private sanctuary with a fully equipped indoor chef's kitchen, peaceful plunge pool, and secluded living spaces designed for families and smaller parties.
+          </p>
+
+          <div class="border border-gray-200/80 rounded-2xl p-3.5 bg-white">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3 min-w-0">
+                <div class="w-11 h-11 rounded-lg bg-gray-200 overflow-hidden shrink-0">
+                  <img src="images/canggu2-11.jpg" alt="Deluxe Suite room" class="w-full h-full object-cover">
+                </div>
+                <div class="min-w-0">
+                  <h4 class="font-semibold text-sm text-brand-charcoal truncate">Deluxe Suite room</h4>
+                  <div class="flex items-center flex-wrap gap-2 text-xs text-gray-500 font-normal mt-1 leading-none">
+                    <span class="inline-flex items-center gap-1">
+                      <i data-lucide="bed-double" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                      <span>Queen bed</span>
+                    </span>
+                    <span class="text-gray-300">·</span>
+                    <span class="inline-flex items-center gap-1">
+                      <i data-lucide="users" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                      <span>2 pax</span>
+                    </span>
+                    <span class="text-gray-300">·</span>
+                    <span class="inline-flex items-center gap-1">
+                      <i data-lucide="bath" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                      <span>Private bathroom</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="shrink-0 pl-2">
+                <span class="text-[11px] font-medium text-gray-500 bg-gray-50 border border-gray-200/80 px-2.5 py-1 rounded-full whitespace-nowrap">
+                  4 available
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-4 mt-4 border-t border-gray-100">
+          <div id="card2-price-area" class="transition-opacity duration-300">
+            <div class="flex items-baseline gap-1 mb-0.5">
+              <span class="text-xs font-normal text-[#0B2341]">Total price</span>
+              <span id="card2-sub-unit" class="text-[11px] text-gray-400 font-medium">(1 night x 1 room)</span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span id="card2-price" class="text-xl font-bold text-brand-charcoal">$113</span>
+              <span class="text-[11px] text-[#64748B] font-medium">AUD</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2.5">
+            <div id="card2-capacity-warning" class="hidden items-center gap-1.5 px-3 py-2 bg-amber-50 border border-amber-200 rounded-full text-[10px] text-amber-800 font-semibold cursor-pointer hover:bg-amber-100 transition-colors" onclick="adjustIndexGuestsTo(8)">
+              <i data-lucide="info" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
+              <span>Max 8 guests</span>
+            </div>
+            <a id="card2-btn" href="property-canggu-2.html" class="btn-secondary !py-2.5 !px-6 !text-xs font-semibold">
+              Explore Villa
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= REVIEWS SECTION ================= -->
+  <section id="reviews" class="py-16 md:py-24 bg-[#F9F6F0] w-full">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#AF431D] block mb-2">Guest Experiences</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-normal text-brand-charcoal tracking-tight">Stories from our Sanctuaries</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+
+        <!-- Nattasha's Review -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+          <div class="flex items-center gap-1 mb-4 text-[#E3BE86] shrink-0">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </div>
+          
+          <div class="flex-1 flex flex-col mb-6">
+            <div id="review-1-full" class="hidden">
+              "We had a group of 16 adults and it was perfect. All bedrooms were extremely clean, ensuite bathrooms and plenty of space. The pool area and kitchen is fantastic for large groups, it was everything we needed. Location is fantastic, private and the 24/7 staff made you feel safe and welcome. Justine was also so kind and flexible with our stay which was extremely lovely. We cannot recommend this villa enough, we will definitely be back!"
+            </div>
+            <div class="text-gray-600 text-sm leading-relaxed font-light line-clamp-5">
+              "We had a group of 16 adults and it was perfect. All bedrooms were extremely clean, ensuite bathrooms and plenty of space. The pool area and kitchen is fantastic for large groups, it was everything we needed. Location is fantastic, private and the 24/7 staff made you feel safe and welcome. Justine was also so kind and flexible with our stay which was extremely lovely. We cannot recommend this villa enough, we will definitely be back!"
+            </div>
+            <button onclick="openReviewModal('Nattasha', 'January 2026', 'review-1-full')" class="text-[11px] font-semibold text-[#7996A8] hover:text-[#597587] mt-1.5 text-left inline-block w-max transition-colors">Read more</button>
+          </div>
+
+          <div class="mt-auto shrink-0">
+            <p class="font-semibold text-sm text-brand-charcoal">Nattasha</p>
+            <p class="text-[10px] text-gray-400 mt-0.5">January 2026</p>
+          </div>
+        </div>
+
+        <!-- Mahmoud's Review -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+          <div class="flex items-center gap-1 mb-4 text-[#E3BE86] shrink-0">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </div>
+          
+          <div class="flex-1 flex flex-col mb-6">
+            <div id="review-2-full" class="hidden">
+              "Great accom for big parties (we went with 13 people).<br><br>Onsite security.<br>Fresh and clean pool<br>All rooms with aircon, fresh bedding, clean towels, shampoo/conditioner/body wash.<br><br>Alan was very friendly and responsive.<br>Would come back and stay again."
+            </div>
+            <div class="text-gray-600 text-sm leading-relaxed font-light line-clamp-5">
+              "Great accom for big parties (we went with 13 people).<br><br>Onsite security.<br>Fresh and clean pool<br>All rooms with aircon, fresh bedding, clean towels, shampoo/conditioner/body wash.<br><br>Alan was very friendly and responsive.<br>Would come back and stay again."
+            </div>
+            <button onclick="openReviewModal('Mahmoud', 'July 2026', 'review-2-full')" class="text-[11px] font-semibold text-[#7996A8] hover:text-[#597587] mt-1.5 text-left inline-block w-max transition-colors">Read more</button>
+          </div>
+
+          <div class="mt-auto shrink-0">
+            <p class="font-semibold text-sm text-brand-charcoal">Mahmoud</p>
+            <p class="text-[10px] text-gray-400 mt-0.5">July 2026</p>
+          </div>
+        </div>
+
+        <!-- Isabel's Review -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full">
+          <div class="flex items-center gap-1 mb-4 text-[#E3BE86] shrink-0">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </div>
+          
+          <div class="flex-1 flex flex-col mb-6">
+            <div id="review-3-full" class="hidden">
+              "Loved this place! Stayed here for my 21st with a big group, place was super tidy and staff were lovely. Each room had a water filter and ensuites, plus everything else you needed. Super safe with security and location was a quick bike everywhere. Only faults were that it was super noisy as it's on a main road, but only the top four rooms. Didn't bother us too much as we were often home late, but was quite loud in the morning. Some of the showers flooded when on and would squirt up onto the roof but otherwise the bathrooms were great and clean. Kitchen is very minimal but we weren't cooking so wasn't necessary, they had a bbq if you were anyways. Only request would be a fridge for the main area instead of in every room! Alan was a great host, both him and the staff were super quick to respond, when our water filters ran out they replaced them straight away. Couldn't fault the staff, you wouldn't know they were there but still cleaned etc which was perfect! Would recommend to big groups!"
+            </div>
+            <div class="text-gray-600 text-sm leading-relaxed font-light line-clamp-5">
+              "Loved this place! Stayed here for my 21st with a big group, place was super tidy and staff were lovely. Each room had a water filter and ensuites, plus everything else you needed. Super safe with security and location was a quick bike everywhere. Only faults were that it was super noisy as it's on a main road, but only the top four rooms. Didn't bother us too much as we were often home late, but was quite loud in the morning. Some of the showers flooded when on and would squirt up onto the roof but otherwise the bathrooms were great and clean. Kitchen is very minimal but we weren't cooking so wasn't necessary, they had a bbq if you were anyways. Only request would be a fridge for the main area instead of in every room! Alan was a great host, both him and the staff were super quick to respond, when our water filters ran out they replaced them straight away. Couldn't fault the staff, you wouldn't know they were there but still cleaned etc which was perfect! Would recommend to big groups!"
+            </div>
+            <button onclick="openReviewModal('Isabel', 'May 2026', 'review-3-full')" class="text-[11px] font-semibold text-[#7996A8] hover:text-[#597587] mt-1.5 text-left inline-block w-max transition-colors">Read more</button>
+          </div>
+
+          <div class="mt-auto shrink-0">
+            <p class="font-semibold text-sm text-brand-charcoal">Isabel</p>
+            <p class="text-[10px] text-gray-400 mt-0.5">May 2026</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="location" class="py-16 md:py-20 px-4 sm:px-6 max-w-5xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-8">
+      <span class="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#AF431D] block mb-2">
+        Neighborhood
+      </span>
+      <h2 class="font-serif text-3xl sm:text-4xl font-normal text-brand-charcoal tracking-tight">
+        Pererenan, Canggu
+      </h2>
+    </div>
+
+    <div class="w-full h-80 sm:h-96 rounded-3xl bg-gray-200/80 border border-gray-300/60 flex items-center justify-center text-gray-500 text-sm font-medium">
+      map of where the two properties are
+    </div>
+  </section>
+
+  <section id="inquire" class="py-24 bg-brand-charcoal text-white px-6 relative overflow-hidden">
+    <div class="absolute -top-32 -right-32 w-96 h-96 bg-brand-terracotta/25 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-brand-olive/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10">
+      <div>
+        <p class="text-xs uppercase tracking-widest font-semibold text-brand-sand mb-3">DIRECT INQUIRIES</p>
+        <h2 class="font-serif text-4xl sm:text-5xl font-normal leading-tight mb-6">
+          Reserve your stay.
+        </h2>
+        <p class="text-gray-300 font-light text-sm leading-relaxed mb-8">
+          Tell us about your group size and preferred dates. Our direct booking team will confirm exclusive availability and tailor your stay.
+        </p>
+
+        <div class="space-y-3 mt-8">
+          <div class="flex items-center space-x-3 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-[#D4A373] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>Guaranteed best direct rate without platform fees</span>
+          </div>
+          <div class="flex items-center space-x-3 text-sm text-gray-300">
+            <svg class="w-4 h-4 text-[#D4A373] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>Dedicated concierge support throughout your stay</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md shadow-2xl">
+        <form id="contact-form" class="space-y-4" onsubmit="event.preventDefault(); alert('Inquiry sent successfully!');">
+          <div>
+            <label class="block text-[10px] uppercase font-bold tracking-wider text-[#D4A373] mb-1.5">Name</label>
+            <input 
+              type="text" 
+              id="contact-name" 
+              placeholder="Your full name" 
+              class="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#D4A373] transition-colors"
+            >
+          </div>
+
+          <div>
+            <label class="block text-[10px] uppercase font-bold tracking-wider text-[#D4A373] mb-1.5">Email</label>
+            <input 
+              type="email" 
+              id="contact-email" 
+              placeholder="you@example.com" 
+              class="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#D4A373] transition-colors"
+            >
+            <p id="email-error-text" class="hidden text-xs text-red-400 mt-1.5 pl-1">Please enter a valid email address.</p>
+          </div>
+
+          <div>
+            <label class="block text-[10px] uppercase font-bold tracking-wider text-[#D4A373] mb-1.5">Select Sanctuary</label>
+            <select 
+              id="contact-sanctuary" 
+              class="w-full bg-[#222222] border border-white/10 rounded-2xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-[#D4A373] transition-colors cursor-pointer"
+            >
+              <option value="Casa del Canggu (18 Guests)">Casa del Canggu</option>
+              <option value="Casa del Canggu 2 (8 Guests)">Casa del Canggu 2</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-[10px] uppercase font-bold tracking-wider text-[#D4A373] mb-1.5">Message & Target Dates</label>
+            <textarea 
+              id="contact-message" 
+              rows="4" 
+              placeholder="Tell us about your group & dates..." 
+              class="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#D4A373] transition-colors resize-none"
+            ></textarea>
+          </div>
+
+          <button 
+            type="submit" 
+            id="contact-submit-btn" 
+            disabled 
+            class="w-full bg-[#AF431D] hover:bg-[#8F3516] text-white py-4 rounded-full font-medium text-sm transition-all shadow-sm opacity-40 cursor-not-allowed mt-2"
+          >
+            Send inquiry
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-brand-charcoal border-t border-white/10 py-10 px-6 text-center text-xs text-gray-500">
+    <p>&copy; 2026 Rifmi Properties Bali. All rights reserved.</p>
+  </footer>
+
+  <!-- ================= REVIEW MODAL ================= -->
+  <div id="review-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300">
+    <div class="absolute inset-0 bg-brand-charcoal/60 backdrop-blur-sm cursor-pointer" onclick="closeReviewModal()"></div>
+    
+    <div class="relative bg-white rounded-3xl w-full max-w-lg mx-auto shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 p-6 sm:p-8 max-h-[90vh] flex flex-col" id="review-modal-content">
+      <button onclick="closeReviewModal()" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-brand-charcoal rounded-full hover:bg-gray-50 transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      
+      <div class="flex items-center gap-1 mb-5 text-[#E3BE86] shrink-0">
+        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+      </div>
+      
+      <div class="overflow-y-auto pr-2 custom-scrollbar flex-1 mb-6">
+        <div id="modal-review-text" class="text-gray-600 text-sm leading-relaxed font-light space-y-3"></div>
+      </div>
+      
+      <div class="shrink-0 pt-5 border-t border-gray-100">
+        <p id="modal-reviewer-name" class="font-semibold text-sm text-brand-charcoal"></p>
+        <p id="modal-reviewer-meta" class="text-[11px] text-gray-400 mt-0.5"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Rates & State
+    const RATE_VILLA1_ROOM = 86.67; 
+    const RATE_VILLA2_ROOM = 112.50; 
+    
+    let indexGuestCount = 2;
+    let indexRoomCount = 1;
+    let indexNightsCount = 1;
+    let selectedCheckinStr = '';
+    let selectedCheckoutStr = '';
+
+    // 1. Flatpickr Initializer
+    let datePickerInstance = null;
+    const dateInput = document.getElementById("index-dates-input");
+    
+    if (dateInput && typeof flatpickr !== 'undefined') {
+      datePickerInstance = flatpickr("#index-dates-input", {
+        mode: "range",
+        minDate: "today",
+        dateFormat: "D, M j",
+        locale: { rangeSeparator: " - " },
+        onChange: function(selectedDates) {
+          if (selectedDates.length === 2) {
+            const diffTime = Math.abs(selectedDates[1] - selectedDates[0]);
+            indexNightsCount = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
+            selectedCheckinStr = selectedDates[0].toISOString().split('T')[0];
+            selectedCheckoutStr = selectedDates[1].toISOString().split('T')[0];
+          } else {
+            indexNightsCount = 1;
+            selectedCheckinStr = '';
+            selectedCheckoutStr = '';
+          }
+          updateIndexRoomsDropdownUI();
+          updateCardPrices();
+        }
+      });
+    }
+
+    // 2. Guests Stepper with Auto Room Increase & Decrease (CAPPED AT 18)
+    function adjustIndexGuests(delta) {
+      indexGuestCount = Math.max(1, Math.min(18, indexGuestCount + delta));
+      applyGuestUpdates();
+    }
+
+    function adjustIndexGuestsTo(targetGuests) {
+      indexGuestCount = targetGuests;
+      applyGuestUpdates();
+    }
+
+    function applyGuestUpdates() {
+      const label = document.getElementById('index-guests-label');
+      if (label) {
+        label.innerText = `${indexGuestCount} guest${indexGuestCount > 1 ? 's' : ''}`;
+      }
+
+      indexRoomCount = Math.max(1, Math.ceil(indexGuestCount / 2));
+
+      updateIndexRoomsDropdownUI();
+      updateCardPrices();
+    }
+
+   // 3. Dynamic Rooms Dropdown (Room counts only)
+    function updateIndexRoomsDropdownUI() {
+      const menu = document.getElementById('index-rooms-menu');
+      if (!menu) return;
+
+      const minRequiredRooms = Math.ceil(indexGuestCount / 2);
+      let menuHtml = '';
+
+      const maxDropdownRooms = Math.max(9, minRequiredRooms);
+      for (let i = minRequiredRooms; i <= maxDropdownRooms; i++) {
+        menuHtml += `
+          <div onclick="selectIndexRooms(${i})" class="px-3.5 py-2.5 rounded-xl hover:bg-gray-50 flex items-center justify-between cursor-pointer text-brand-charcoal font-medium">
+            <span>${i} room${i > 1 ? 's' : ''}</span>
+          </div>
+        `;
+      }
+      menu.innerHTML = menuHtml;
+
+      const label = document.getElementById('index-rooms-label');
+      if (label) {
+        label.innerText = `${indexRoomCount} room${indexRoomCount > 1 ? 's' : ''}`;
+      }
+    }
+
+    function toggleIndexRooms() {
+      const menu = document.getElementById('index-rooms-menu');
+      if (menu) menu.classList.toggle('hidden');
+    }
+
+    function selectIndexRooms(count) {
+      indexRoomCount = count;
+      updateIndexRoomsDropdownUI();
+      updateCardPrices();
+      const menu = document.getElementById('index-rooms-menu');
+      if (menu) menu.classList.add('hidden');
+    }
+
+    document.addEventListener('click', (e) => {
+      const container = e.target.closest('[onclick*="toggleIndexRooms"]');
+      if (!container) {
+        const menu = document.getElementById('index-rooms-menu');
+        if (menu) menu.classList.add('hidden');
+      }
+    });
+
+    // 4. Update Property Cards with Availability & Real-time Pricing
+    function updateCardPrices() {
+      const card1Warning = document.getElementById('card1-capacity-warning');
+      const card1Main = document.getElementById('card1-main-content');
+      const card1PriceArea = document.getElementById('card1-price-area');
+      const card1PriceEl = document.getElementById('card1-price');
+      const card1SubEl = document.getElementById('card1-sub-unit');
+      const card1Btn = document.getElementById('card1-btn');
+
+      // VILLA 1 LOGIC (Max 18)
+      if (indexGuestCount > 18) {
+        if (card1Warning) {
+          card1Warning.classList.remove('hidden');
+          card1Warning.classList.add('flex');
+        }
+        if (card1Main) card1Main.classList.add('opacity-30', 'pointer-events-none');
+        if (card1PriceArea) card1PriceArea.classList.add('opacity-30', 'pointer-events-none');
+      } else {
+        if (card1Warning) {
+          card1Warning.classList.add('hidden');
+          card1Warning.classList.remove('flex');
+        }
+        if (card1Main) card1Main.classList.remove('opacity-30', 'pointer-events-none');
+        if (card1PriceArea) card1PriceArea.classList.remove('opacity-30', 'pointer-events-none');
+      }
+
+      const card1Rooms = Math.min(9, Math.max(1, indexRoomCount));
+      const card1Total = Math.round(card1Rooms * RATE_VILLA1_ROOM * indexNightsCount);
+      if (card1PriceEl) card1PriceEl.innerText = `$${card1Total.toLocaleString()}`;
+      if (card1SubEl) card1SubEl.innerText = `(${indexNightsCount} night${indexNightsCount > 1 ? 's' : ''} x ${card1Rooms} room${card1Rooms > 1 ? 's' : ''})`;
+
+      // VILLA 2 LOGIC (Max 8)
+      const card2Warning = document.getElementById('card2-capacity-warning');
+      const card2Main = document.getElementById('card2-main-content');
+      const card2PriceArea = document.getElementById('card2-price-area');
+      const card2PriceEl = document.getElementById('card2-price');
+      const card2SubEl = document.getElementById('card2-sub-unit');
+      const card2Btn = document.getElementById('card2-btn');
+
+      if (indexGuestCount > 8) {
+        if (card2Warning) {
+          card2Warning.classList.remove('hidden');
+          card2Warning.classList.add('flex');
+        }
+        if (card2Main) card2Main.classList.add('opacity-30', 'pointer-events-none');
+        if (card2PriceArea) card2PriceArea.classList.add('opacity-30', 'pointer-events-none');
+      } else {
+        if (card2Warning) {
+          card2Warning.classList.add('hidden');
+          card2Warning.classList.remove('flex');
+        }
+        if (card2Main) card2Main.classList.remove('opacity-30', 'pointer-events-none');
+        if (card2PriceArea) card2PriceArea.classList.remove('opacity-30', 'pointer-events-none');
+      }
+
+      const card2Rooms = Math.min(4, Math.max(1, indexRoomCount));
+      const card2Total = Math.round(card2Rooms * RATE_VILLA2_ROOM * indexNightsCount);
+      if (card2PriceEl) card2PriceEl.innerText = `$${card2Total.toLocaleString()}`;
+      if (card2SubEl) card2SubEl.innerText = `(${indexNightsCount} night${indexNightsCount > 1 ? 's' : ''} x ${card2Rooms} room${card2Rooms > 1 ? 's' : ''})`;
+
+      // Links update
+      const params = new URLSearchParams();
+      if (selectedCheckinStr && selectedCheckoutStr) {
+        params.set('checkin', selectedCheckinStr);
+        params.set('checkout', selectedCheckoutStr);
+      }
+      params.set('guests', indexGuestCount);
+
+      if (card1Btn) card1Btn.href = `property-canggu.html?${params.toString()}`;
+      if (card2Btn) card2Btn.href = `property-canggu-2.html?${params.toString()}`;
+
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    }
+
+    // 5. Contact Form Real-time Validation
+    const formName = document.getElementById('contact-name');
+    const formEmail = document.getElementById('contact-email');
+    const formMessage = document.getElementById('contact-message');
+    const submitBtn = document.getElementById('contact-submit-btn');
+    const emailErrorText = document.getElementById('email-error-text');
+
+    function isValidEmail(email) {
+      return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+    }
+
+    function validateContactForm() {
+      const nameVal = formName ? formName.value.trim() : '';
+      const emailVal = formEmail ? formEmail.value.trim() : '';
+      const messageVal = formMessage ? formMessage.value.trim() : '';
+
+      const isNameValid = nameVal.length > 0;
+      const isEmailValid = isValidEmail(emailVal);
+      const isMessageValid = messageVal.length > 0;
+
+      if (emailVal.length > 0 && !isEmailValid) {
+        formEmail.classList.add('border-red-500');
+        formEmail.classList.remove('border-white/10');
+        if (emailErrorText) emailErrorText.classList.remove('hidden');
+      } else {
+        formEmail.classList.remove('border-red-500');
+        formEmail.classList.add('border-white/10');
+        if (emailErrorText) emailErrorText.classList.add('hidden');
+      }
+
+      if (isNameValid && isEmailValid && isMessageValid) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+      } else {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-40', 'cursor-not-allowed');
+      }
+    }
+
+    if (formName && formEmail && formMessage) {
+      formName.addEventListener('input', validateContactForm);
+      formEmail.addEventListener('input', validateContactForm);
+      formMessage.addEventListener('input', validateContactForm);
+      formEmail.addEventListener('blur', validateContactForm);
+    }
+
+    // 6. Review Modal Controls
+    function openReviewModal(name, meta, textId) {
+      const modal = document.getElementById('review-modal');
+      const modalContent = document.getElementById('review-modal-content');
+      const textEl = document.getElementById('modal-review-text');
+      const nameEl = document.getElementById('modal-reviewer-name');
+      const metaEl = document.getElementById('modal-reviewer-meta');
+      
+      const fullText = document.getElementById(textId).innerHTML;
+      
+      textEl.innerHTML = fullText;
+      nameEl.innerText = name;
+      metaEl.innerText = meta;
+      
+      modal.classList.remove('hidden');
+      void modal.offsetWidth; // Force reflow
+      modal.classList.remove('opacity-0');
+      modal.classList.add('flex', 'opacity-100');
+      modalContent.classList.remove('scale-95');
+      modalContent.classList.add('scale-100');
+      
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeReviewModal() {
+      const modal = document.getElementById('review-modal');
+      const modalContent = document.getElementById('review-modal-content');
+      
+      modal.classList.remove('opacity-100');
+      modal.classList.add('opacity-0');
+      modalContent.classList.remove('scale-100');
+      modalContent.classList.add('scale-95');
+      
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+      }, 300);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateIndexRoomsDropdownUI();
+      updateCardPrices();
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    });
+  </script>
+</body>
+</html>
