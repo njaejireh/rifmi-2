@@ -81,7 +81,7 @@
       display: none !important;
     }
 
-    .flatpickr-prev-month, 
+    .flatpickr-prev-month,
     .flatpickr-next-month {
       color: #94a3b8 !important;
       fill: #94a3b8 !important;
@@ -131,7 +131,7 @@
       background: #f3f4f6 !important;
     }
 
-    .flatpickr-day.prevMonthDay, 
+    .flatpickr-day.prevMonthDay,
     .flatpickr-day.nextMonthDay {
       visibility: hidden !important;
     }
@@ -166,19 +166,38 @@
       width: 4px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: #f1f1f1; 
+      background: #f1f1f1;
       border-radius: 4px;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #cbd5e1; 
+      background: #cbd5e1;
       border-radius: 4px;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #94a3b8; 
+      background: #94a3b8;
+    }
+
+    /* Secondary Button */
+    .btn-secondary {
+      border-color: #AF431D;
+      color: #AF431D;
+    }
+    .btn-secondary:hover {
+      background-color: #FFE8E0;
+      border-color: #AF431D;
+      color: #AF431D;
+    }
+
+    /* The hero/search-bar layout script resizes elements above the fold
+       while the page may already be scrolled (e.g. correcting a native
+       anchor-jump). Scroll anchoring would otherwise auto-adjust scrollY
+       to compensate for those size changes, fighting our own corrections
+       with an invisible, uncontrolled scroll of its own. */
+    html {
+      overflow-anchor: none;
     }
   </style>
 
-  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="bg-[#FFFEFB] text-brand-charcoal font-sans antialiased selection:bg-brand-sand selection:text-brand-charcoal">
@@ -186,7 +205,7 @@
  <!-- ================= TOP NAVIGATION ================= -->
   <header class="absolute top-0 left-0 right-0 z-40 pt-6">
     <div class="max-w-6xl mx-auto px-6 h-20 relative flex items-center justify-between">
-      
+
       <!-- Logo (Left) -->
       <div class="flex items-center">
         <a href="index.html" class="flex items-center shrink-0">
@@ -206,14 +225,14 @@
 
   <div class="relative w-full z-20">
 
-    <section class="relative h-screen min-h-[640px] w-full overflow-hidden z-0">
-      
+    <section id="hero-section" class="relative h-screen min-h-[640px] w-full overflow-hidden z-0">
+
       <div class="absolute inset-0 z-0 overflow-hidden">
-        <video 
-          autoplay 
-          loop 
-          muted 
-          playsinline 
+        <video
+          autoplay
+          loop
+          muted
+          playsinline
           poster="images/hero-1.jpg"
           class="w-full h-full object-cover scale-105"
         >
@@ -222,10 +241,10 @@
         <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.45) 50%, rgba(0, 0, 0, 0) 100%);"></div>
       </div>
 
-      <div class="absolute inset-0 z-20 flex items-center justify-center px-6 pb-32" style="padding-top: 40px;">
+      <div class="absolute inset-0 z-20 flex items-center justify-center px-6">
         <div class="max-w-5xl w-full mx-auto text-center text-white flex flex-col items-center">
-          
-          <div class="max-w-3xl mx-auto drop-shadow-md">
+
+          <div id="hero-text-block" class="max-w-3xl mx-auto drop-shadow-md">
             <span class="inline-block px-4 py-2 rounded-full bg-white/10 text-[#E9C891] text-xs font-semibold uppercase tracking-widest backdrop-blur-md mb-6">
               Exclusive Bali Sanctuary Collection
             </span>
@@ -241,18 +260,18 @@
       </div>
     </section>
 
-    <div class="sticky top-[160px] z-50 w-full flex justify-center -mt-[200px] px-4 sm:px-6">
+    <div id="index-search-bar" class="sticky top-[160px] z-50 w-full flex justify-center px-4 sm:px-6">
       <div class="flex flex-col lg:flex-row items-center justify-center gap-3 w-full max-w-4xl drop-shadow-2xl">
-        
+
         <div class="w-full lg:w-64 bg-white rounded-full px-5 h-14 flex items-center gap-3 cursor-pointer border border-transparent hover:border-gray-200 transition-colors">
           <i data-lucide="calendar" class="w-4 h-4 text-[#7492A6] shrink-0"></i>
           <div class="flex flex-col text-left flex-1 min-w-0">
             <span class="text-[9px] uppercase font-bold tracking-wider text-gray-400 mb-0.5">Select Dates</span>
-            <input 
-              type="text" 
-              id="index-dates-input" 
-              placeholder="Add dates" 
-              readonly 
+            <input
+              type="text"
+              id="index-dates-input"
+              placeholder="Add dates"
+              readonly
               class="text-xs font-semibold text-[#0B2341] bg-transparent cursor-pointer focus:outline-none p-0 truncate w-full"
             >
           </div>
@@ -272,209 +291,216 @@
           </div>
         </div>
 
-        <div class="w-full lg:w-48 relative bg-white rounded-full px-5 h-14 flex items-center justify-between cursor-pointer border border-transparent hover:border-gray-200 transition-colors" onclick="toggleIndexRooms()">
-          <div class="flex items-center gap-3 flex-1 min-w-0">
-            <i data-lucide="bed" class="w-4 h-4 text-[#7492A6] shrink-0"></i>
-            <div class="flex flex-col text-left min-w-0">
-              <span class="text-[9px] uppercase font-bold tracking-wider text-gray-400 mb-0.5">Rooms</span>
-              <span id="index-rooms-label" class="text-xs font-semibold text-[#0B2341] truncate">1 room</span>
-            </div>
-          </div>
-          <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 shrink-0 ml-1"></i>
-          
-          <div id="index-rooms-menu" class="hidden absolute top-full left-0 mt-2 w-full bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-50 text-xs max-h-60 overflow-y-auto" onclick="event.stopPropagation()"></div>
-        </div>
-
-        <a href="#collection-target" class="w-14 h-14 rounded-full bg-brand-terracotta text-white flex items-center justify-center hover:bg-[#8F3516] transition-colors shrink-0 shadow-lg cursor-pointer mx-auto lg:mx-0">
+        <a href="#collection-target" id="hero-search-btn" class="w-14 h-14 rounded-full bg-brand-terracotta text-white flex items-center justify-center hover:bg-[#8F3516] transition-colors shrink-0 shadow-lg cursor-pointer mx-auto lg:mx-0">
           <i data-lucide="search" class="w-5 h-5"></i>
         </a>
 
       </div>
     </div>
 
-    <div class="h-[14vh] bg-[#FFFEFB] w-full mt-[144px]"></div>
+    <div id="hero-to-heading-spacer" class="w-full bg-[#FFFEFB]"></div>
 
-    <div id="collection-target" class="scroll-mt-[40px] h-[80px] flex flex-col items-center justify-center bg-[#FFFEFB] relative z-20">
+    <div id="collection-target" class="scroll-mt-[60px] h-[80px] flex flex-col items-center justify-center bg-[#FFFEFB] relative z-20">
       <span class="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#AF431D] block mb-2">The Collection</span>
       <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-brand-charcoal tracking-tight leading-none m-0">Our Bali Sanctuaries</h2>
     </div>
 
-    <div class="h-[96px] bg-[#FFFEFB] w-full relative z-10"></div>
+    <div id="post-heading-spacer" class="w-full relative z-10 bg-[#FFFEFB]"></div>
 
   </div>
 
-  <section id="properties" class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 md:pt-16 pb-16 md:pb-24 relative z-0">
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-      
-      <div id="card1-container" class="bg-white border border-gray-200/80 rounded-2xl p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-        
-        <div id="card1-main-content" class="transition-opacity duration-300">
-          <div class="w-full h-52 rounded-xl overflow-hidden bg-gray-100 mb-4 shrink-0">
-            <img src="images/hero-1.jpg" alt="Casa del Canggu" class="w-full h-full object-cover">
+  <!-- HORIZONTAL PROPERTY CARDS -->
+  <section id="properties" class="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-16 md:pb-24 relative z-0">
+
+    <div class="grid grid-cols-1 gap-8 w-full">
+
+      <!-- CARD 1 -->
+      <div id="card1-container" class="bg-white border border-gray-200/80 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all">
+
+        <div class="flex flex-col md:flex-row gap-6 lg:gap-8 h-full">
+          <!-- Image Left (carousel) -->
+          <div class="relative group w-full md:w-[320px] h-60 md:h-auto min-h-[260px] rounded-2xl overflow-hidden bg-gray-100 shrink-0">
+            <img id="card1-carousel-img" src="images/hero-1.jpg" alt="Casa del Canggu" class="w-full h-full object-cover cursor-pointer" onclick="openCardLightboxAtCurrent(1)">
+
+            <button type="button" onclick="stepCardCarousel(1, -1, event)" aria-label="Previous photo" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-brand-charcoal flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+              <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            </button>
+            <button type="button" onclick="stepCardCarousel(1, 1, event)" aria-label="Next photo" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-brand-charcoal flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
           </div>
 
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <h2 class="font-serif text-2xl sm:text-3xl text-brand-charcoal font-normal tracking-tight">
-              Casa del Canggu
-            </h2>
-          </div>
+          <!-- Content Right -->
+          <div class="flex-1 flex flex-col">
+            <div id="card1-main-content" class="transition-opacity duration-300 flex-1">
+              <h2 class="font-serif text-2xl sm:text-3xl text-brand-charcoal font-normal tracking-tight mb-2">
+                Casa del Canggu
+              </h2>
 
-          <div class="flex flex-wrap gap-1.5 mt-2.5 mb-3">
-            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Up to 18 guests</span>
-            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">9 Ensuite suites</span>
-            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Large pool</span>
-            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Outdoor kitchen & BBQ</span>
-          </div>
+              <div class="flex flex-wrap gap-1.5 mb-3">
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Up to 18 guests</span>
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">9 Ensuite suites</span>
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Large pool</span>
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Outdoor kitchen & BBQ</span>
+              </div>
 
-          <p class="text-xs text-gray-500 leading-relaxed font-light mb-4 line-clamp-2">
-            An expansive private estate built for retreats and large group gatherings, featuring an open-air culinary grill area, generous pool grounds, and communal dining.
-          </p>
+              <p class="text-xs text-gray-500 leading-relaxed font-light mb-6 line-clamp-2">
+                An expansive private estate built for retreats and large group gatherings, featuring an open-air culinary grill area, generous pool grounds, and communal dining.
+              </p>
 
-          <div class="border border-gray-200/80 rounded-2xl p-3.5 bg-white">
-            <div class="flex items-center justify-between gap-3">
-              <div class="flex items-center gap-3 min-w-0">
-                <div class="w-11 h-11 rounded-lg bg-gray-200 overflow-hidden shrink-0">
-                  <img src="images/hero-5.jpg" alt="Deluxe Suite room" class="w-full h-full object-cover">
-                </div>
-                <div class="min-w-0">
-                  <h4 class="font-semibold text-sm text-brand-charcoal truncate">Deluxe Suite room</h4>
-                  <div class="flex items-center flex-wrap gap-2 text-xs text-gray-500 font-normal mt-1 leading-none">
-                    <span class="inline-flex items-center gap-1">
-                      <i data-lucide="bed-double" class="w-3.5 h-3.5 text-[#7492A6]"></i>
-                      <span>Queen bed</span>
-                    </span>
-                    <span class="text-gray-300">·</span>
-                    <span class="inline-flex items-center gap-1">
-                      <i data-lucide="users" class="w-3.5 h-3.5 text-[#7492A6]"></i>
-                      <span>2 pax</span>
-                    </span>
-                    <span class="text-gray-300">·</span>
-                    <span class="inline-flex items-center gap-1">
-                      <i data-lucide="bath" class="w-3.5 h-3.5 text-[#7492A6]"></i>
-                      <span>Private bathroom</span>
-                    </span>
+              <div class="border border-gray-200/80 rounded-2xl p-3.5 bg-white mb-6">
+                <div class="flex items-center justify-between gap-3">
+                  <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-11 h-11 rounded-lg bg-gray-200 overflow-hidden shrink-0">
+                      <img src="images/hero-5.jpg" alt="Deluxe Suite room" class="w-full h-full object-cover cursor-pointer" onclick="openCardLightbox(1, 1)">
+                    </div>
+                    <div class="min-w-0">
+                      <h4 class="font-semibold text-sm text-brand-charcoal truncate">Deluxe Suite room</h4>
+                      <div class="flex items-center flex-wrap gap-2 text-xs text-gray-500 font-normal mt-1 leading-none">
+                        <span class="inline-flex items-center gap-1">
+                          <i data-lucide="bed-double" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                          <span>Queen bed</span>
+                        </span>
+                        <span class="text-gray-300">·</span>
+                        <span class="inline-flex items-center gap-1">
+                          <i data-lucide="users" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                          <span>2 pax</span>
+                        </span>
+                        <span class="text-gray-300">·</span>
+                        <span class="inline-flex items-center gap-1">
+                          <i data-lucide="bath" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                          <span>Private bathroom</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="shrink-0 pl-2 relative">
+                    <div data-rooms-trigger onclick="toggleCardRooms(1)" class="flex items-center justify-between gap-3 pl-4 pr-3 py-2 rounded-full border border-gray-200 bg-white cursor-pointer hover:border-brand-terracotta transition-colors">
+                      <div class="flex items-center gap-2">
+                        <i data-lucide="bed" class="w-4 h-4 text-[#7492A6] shrink-0"></i>
+                        <div class="flex flex-col text-left leading-none">
+                          <span class="text-[9px] uppercase font-bold tracking-wider text-gray-400 mb-0.5">Rooms</span>
+                          <span id="card1-rooms-label" class="text-xs font-semibold text-[#0B2341] whitespace-nowrap">1 room</span>
+                        </div>
+                      </div>
+                      <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 shrink-0 ml-2"></i>
+                    </div>
+                    <div id="card1-rooms-menu" class="hidden absolute top-full right-0 mt-2 w-36 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-50 text-xs max-h-60 overflow-y-auto" onclick="event.stopPropagation()"></div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div class="shrink-0 pl-2">
-                <span class="text-[11px] font-medium text-gray-500 bg-gray-50 border border-gray-200/80 px-2.5 py-1 rounded-full whitespace-nowrap">
-                  9 available
-                </span>
+            <!-- Card Footer -->
+            <div class="flex items-center justify-between pt-5 mt-auto border-t border-gray-100">
+              <div id="card1-price-area" class="transition-opacity duration-300">
+                <div class="flex items-baseline gap-1 mb-0.5">
+                  <span class="text-xs font-normal text-[#0B2341]">Total price</span>
+                  <span id="card1-sub-unit" class="text-[11px] text-gray-400 font-medium">(1 night x 1 room)</span>
+                </div>
+                <div class="flex items-baseline gap-1">
+                  <span id="card1-price" class="text-xl font-bold text-brand-charcoal">$87</span>
+                  <span class="text-[11px] text-[#64748B] font-medium">AUD</span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2.5">
+                <div id="card1-capacity-warning" class="hidden items-center gap-1.5 px-3 py-2 bg-amber-50 border border-amber-200 rounded-full text-[10px] text-amber-800 font-semibold cursor-pointer hover:bg-amber-100 transition-colors" onclick="adjustIndexGuestsTo(18)">
+                  <i data-lucide="info" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
+                  <span>Max 18 guests</span>
+                </div>
+                <a id="card1-btn" href="property-canggu.html" class="btn-secondary px-6 py-2.5 rounded-full border text-xs font-semibold transition-colors">
+                  Explore Villa
+                </a>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="flex items-center justify-between pt-4 mt-4 border-t border-gray-100">
-          <div id="card1-price-area" class="transition-opacity duration-300">
-            <div class="flex items-baseline gap-1 mb-0.5">
-              <span class="text-xs font-normal text-[#0B2341]">Total price</span>
-              <span id="card1-sub-unit" class="text-[11px] text-gray-400 font-medium">(1 night x 1 room)</span>
-            </div>
-            <div class="flex items-baseline gap-1">
-              <span id="card1-price" class="text-xl font-bold text-brand-charcoal">$87</span>
-              <span class="text-[11px] text-[#64748B] font-medium">AUD</span>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-2.5">
-            <div id="card1-capacity-warning" class="hidden items-center gap-1.5 px-3 py-2 bg-amber-50 border border-amber-200 rounded-full text-[10px] text-amber-800 font-semibold cursor-pointer hover:bg-amber-100 transition-colors" onclick="adjustIndexGuestsTo(18)">
-              <i data-lucide="info" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
-              <span>Max 18 guests</span>
-            </div>
-            <a id="card1-btn" href="property-canggu.html" class="btn-secondary !py-2.5 !px-6 !text-xs font-semibold">
-              Explore Villa
-            </a>
-          </div>
-        </div>
-
       </div>
 
-      <div id="card2-container" class="bg-white border border-gray-200/80 rounded-2xl p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-        
-        <div id="card2-main-content" class="transition-opacity duration-300">
-          <div class="w-full h-52 rounded-xl overflow-hidden bg-gray-100 mb-4 shrink-0">
-            <img src="images/canggu2-13.jpg" alt="Casa del Canggu 2" class="w-full h-full object-cover">
+      <!-- CARD 2 -->
+      <div id="card2-container" class="bg-white border border-gray-200/80 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all">
+
+        <div class="flex flex-col md:flex-row gap-6 lg:gap-8 h-full">
+          <!-- Image Left (carousel) -->
+          <div class="relative group w-full md:w-[320px] h-60 md:h-auto min-h-[260px] rounded-2xl overflow-hidden bg-gray-100 shrink-0">
+            <img id="card2-carousel-img" src="images/canggu2-13.jpg" alt="Casa del Canggu 2" class="w-full h-full object-cover cursor-pointer" onclick="openCardLightboxAtCurrent(2)">
+
+            <button type="button" onclick="stepCardCarousel(2, -1, event)" aria-label="Previous photo" class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-brand-charcoal flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+              <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            </button>
+            <button type="button" onclick="stepCardCarousel(2, 1, event)" aria-label="Next photo" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white text-brand-charcoal flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-sm">
+              <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
           </div>
 
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <h2 class="font-serif text-2xl sm:text-3xl text-brand-charcoal font-normal tracking-tight">
-              Casa del Canggu 2
-            </h2>
-          </div>
+          <!-- Content Right -->
+          <div class="flex-1 flex flex-col">
+            <div id="card2-main-content" class="transition-opacity duration-300 flex-1">
+              <h2 class="font-serif text-2xl sm:text-3xl text-brand-charcoal font-normal tracking-tight mb-2">
+                Casa del Canggu 2
+              </h2>
 
-          <div class="flex flex-wrap gap-1.5 mt-2.5 mb-3">
-            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Up to 8 guests</span>
-            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">4 Ensuite suites</span>
-            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Intimate plunge pool</span>
-            <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Indoor equipped kitchen</span>
-          </div>
+              <div class="flex flex-wrap gap-1.5 mb-3">
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Up to 8 guests</span>
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">4 Ensuite suites</span>
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Intimate plunge pool</span>
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Indoor equipped kitchen</span>
+              </div>
 
-          <p class="text-xs text-gray-500 leading-relaxed font-light mb-4 line-clamp-2">
-            A cozy, private sanctuary with a fully equipped indoor chef's kitchen, peaceful plunge pool, and secluded living spaces designed for families and smaller parties.
-          </p>
+              <p class="text-xs text-gray-500 leading-relaxed font-light mb-6 line-clamp-2">
+                A cozy, private sanctuary with a fully equipped indoor chef's kitchen, peaceful plunge pool, and secluded living spaces designed for families and smaller parties.
+              </p>
 
-          <div class="border border-gray-200/80 rounded-2xl p-3.5 bg-white">
-            <div class="flex items-center justify-between gap-3">
-              <div class="flex items-center gap-3 min-w-0">
-                <div class="w-11 h-11 rounded-lg bg-gray-200 overflow-hidden shrink-0">
-                  <img src="images/canggu2-11.jpg" alt="Deluxe Suite room" class="w-full h-full object-cover">
-                </div>
-                <div class="min-w-0">
-                  <h4 class="font-semibold text-sm text-brand-charcoal truncate">Deluxe Suite room</h4>
-                  <div class="flex items-center flex-wrap gap-2 text-xs text-gray-500 font-normal mt-1 leading-none">
-                    <span class="inline-flex items-center gap-1">
-                      <i data-lucide="bed-double" class="w-3.5 h-3.5 text-[#7492A6]"></i>
-                      <span>Queen bed</span>
-                    </span>
-                    <span class="text-gray-300">·</span>
-                    <span class="inline-flex items-center gap-1">
-                      <i data-lucide="users" class="w-3.5 h-3.5 text-[#7492A6]"></i>
-                      <span>2 pax</span>
-                    </span>
-                    <span class="text-gray-300">·</span>
-                    <span class="inline-flex items-center gap-1">
-                      <i data-lucide="bath" class="w-3.5 h-3.5 text-[#7492A6]"></i>
-                      <span>Private bathroom</span>
-                    </span>
+              <div class="border border-gray-200/80 rounded-2xl p-3.5 bg-white mb-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-lg bg-gray-200 overflow-hidden shrink-0">
+                    <img src="images/canggu2-11.jpg" alt="Entire villa" class="w-full h-full object-cover cursor-pointer" onclick="openCardLightbox(2, 1)">
+                  </div>
+                  <div class="min-w-0">
+                    <h4 class="font-semibold text-sm text-brand-charcoal truncate">Entire villa</h4>
+                    <div class="flex items-center flex-wrap gap-2 text-xs text-gray-500 font-normal mt-1 leading-none">
+                      <span class="inline-flex items-center gap-1">
+                        <i data-lucide="bed-double" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                        <span>3 bedrooms</span>
+                      </span>
+                      <span class="text-gray-300">·</span>
+                      <span class="inline-flex items-center gap-1">
+                        <i data-lucide="bath" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                        <span>2 bathrooms</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div class="shrink-0 pl-2">
-                <span class="text-[11px] font-medium text-gray-500 bg-gray-50 border border-gray-200/80 px-2.5 py-1 rounded-full whitespace-nowrap">
-                  4 available
-                </span>
+            <!-- Card Footer -->
+            <div class="flex items-center justify-between pt-5 mt-auto border-t border-gray-100">
+              <div id="card2-price-area" class="transition-opacity duration-300">
+                <div class="flex items-baseline gap-1 mb-0.5">
+                  <span class="text-xs font-normal text-[#0B2341]">Total price</span>
+                  <span id="card2-sub-unit" class="text-[11px] text-gray-400 font-medium">(1 night x 1 room)</span>
+                </div>
+                <div class="flex items-baseline gap-1">
+                  <span id="card2-price" class="text-xl font-bold text-brand-charcoal">$113</span>
+                  <span class="text-[11px] text-[#64748B] font-medium">AUD</span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2.5">
+                <div id="card2-capacity-warning" class="hidden items-center gap-1.5 px-3 py-2 bg-amber-50 border border-amber-200 rounded-full text-[10px] text-amber-800 font-semibold cursor-pointer hover:bg-amber-100 transition-colors" onclick="adjustIndexGuestsTo(8)">
+                  <i data-lucide="info" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
+                  <span>Max 8 guests</span>
+                </div>
+                <a id="card2-btn" href="property-canggu-2.html" class="btn-secondary px-6 py-2.5 rounded-full border text-xs font-semibold transition-colors">
+                  Explore Villa
+                </a>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="flex items-center justify-between pt-4 mt-4 border-t border-gray-100">
-          <div id="card2-price-area" class="transition-opacity duration-300">
-            <div class="flex items-baseline gap-1 mb-0.5">
-              <span class="text-xs font-normal text-[#0B2341]">Total price</span>
-              <span id="card2-sub-unit" class="text-[11px] text-gray-400 font-medium">(1 night x 1 room)</span>
-            </div>
-            <div class="flex items-baseline gap-1">
-              <span id="card2-price" class="text-xl font-bold text-brand-charcoal">$113</span>
-              <span class="text-[11px] text-[#64748B] font-medium">AUD</span>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-2.5">
-            <div id="card2-capacity-warning" class="hidden items-center gap-1.5 px-3 py-2 bg-amber-50 border border-amber-200 rounded-full text-[10px] text-amber-800 font-semibold cursor-pointer hover:bg-amber-100 transition-colors" onclick="adjustIndexGuestsTo(8)">
-              <i data-lucide="info" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
-              <span>Max 8 guests</span>
-            </div>
-            <a id="card2-btn" href="property-canggu-2.html" class="btn-secondary !py-2.5 !px-6 !text-xs font-semibold">
-              Explore Villa
-            </a>
-          </div>
-        </div>
-
       </div>
 
     </div>
@@ -499,7 +525,7 @@
             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
           </div>
-          
+
           <div class="flex-1 flex flex-col mb-6">
             <div id="review-1-full" class="hidden">
               "We had a group of 16 adults and it was perfect. All bedrooms were extremely clean, ensuite bathrooms and plenty of space. The pool area and kitchen is fantastic for large groups, it was everything we needed. Location is fantastic, private and the 24/7 staff made you feel safe and welcome. Justine was also so kind and flexible with our stay which was extremely lovely. We cannot recommend this villa enough, we will definitely be back!"
@@ -525,7 +551,7 @@
             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
           </div>
-          
+
           <div class="flex-1 flex flex-col mb-6">
             <div id="review-2-full" class="hidden">
               "Great accom for big parties (we went with 13 people).<br><br>Onsite security.<br>Fresh and clean pool<br>All rooms with aircon, fresh bedding, clean towels, shampoo/conditioner/body wash.<br><br>Alan was very friendly and responsive.<br>Would come back and stay again."
@@ -551,7 +577,7 @@
             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
             <i data-lucide="star" class="w-4 h-4 fill-current"></i>
           </div>
-          
+
           <div class="flex-1 flex flex-col mb-6">
             <div id="review-3-full" class="hidden">
               "Loved this place! Stayed here for my 21st with a big group, place was super tidy and staff were lovely. Each room had a water filter and ensuites, plus everything else you needed. Super safe with security and location was a quick bike everywhere. Only faults were that it was super noisy as it's on a main road, but only the top four rooms. Didn't bother us too much as we were often home late, but was quite loud in the morning. Some of the showers flooded when on and would squirt up onto the roof but otherwise the bathrooms were great and clean. Kitchen is very minimal but we weren't cooking so wasn't necessary, they had a bbq if you were anyways. Only request would be a fridge for the main area instead of in every room! Alan was a great host, both him and the staff were super quick to respond, when our water filters ran out they replaced them straight away. Couldn't fault the staff, you wouldn't know they were there but still cleaned etc which was perfect! Would recommend to big groups!"
@@ -621,20 +647,20 @@
         <form id="contact-form" class="space-y-4" onsubmit="event.preventDefault(); alert('Inquiry sent successfully!');">
           <div>
             <label class="block text-[10px] uppercase font-bold tracking-wider text-[#D4A373] mb-1.5">Name</label>
-            <input 
-              type="text" 
-              id="contact-name" 
-              placeholder="Your full name" 
+            <input
+              type="text"
+              id="contact-name"
+              placeholder="Your full name"
               class="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#D4A373] transition-colors"
             >
           </div>
 
           <div>
             <label class="block text-[10px] uppercase font-bold tracking-wider text-[#D4A373] mb-1.5">Email</label>
-            <input 
-              type="email" 
-              id="contact-email" 
-              placeholder="you@example.com" 
+            <input
+              type="email"
+              id="contact-email"
+              placeholder="you@example.com"
               class="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#D4A373] transition-colors"
             >
             <p id="email-error-text" class="hidden text-xs text-red-400 mt-1.5 pl-1">Please enter a valid email address.</p>
@@ -642,8 +668,8 @@
 
           <div>
             <label class="block text-[10px] uppercase font-bold tracking-wider text-[#D4A373] mb-1.5">Select Sanctuary</label>
-            <select 
-              id="contact-sanctuary" 
+            <select
+              id="contact-sanctuary"
               class="w-full bg-[#222222] border border-white/10 rounded-2xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-[#D4A373] transition-colors cursor-pointer"
             >
               <option value="Casa del Canggu (18 Guests)">Casa del Canggu</option>
@@ -653,18 +679,18 @@
 
           <div>
             <label class="block text-[10px] uppercase font-bold tracking-wider text-[#D4A373] mb-1.5">Message & Target Dates</label>
-            <textarea 
-              id="contact-message" 
-              rows="4" 
-              placeholder="Tell us about your group & dates..." 
+            <textarea
+              id="contact-message"
+              rows="4"
+              placeholder="Tell us about your group & dates..."
               class="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#D4A373] transition-colors resize-none"
             ></textarea>
           </div>
 
-          <button 
-            type="submit" 
-            id="contact-submit-btn" 
-            disabled 
+          <button
+            type="submit"
+            id="contact-submit-btn"
+            disabled
             class="w-full bg-[#AF431D] hover:bg-[#8F3516] text-white py-4 rounded-full font-medium text-sm transition-all shadow-sm opacity-40 cursor-not-allowed mt-2"
           >
             Send inquiry
@@ -681,12 +707,12 @@
   <!-- ================= REVIEW MODAL ================= -->
   <div id="review-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300">
     <div class="absolute inset-0 bg-brand-charcoal/60 backdrop-blur-sm cursor-pointer" onclick="closeReviewModal()"></div>
-    
+
     <div class="relative bg-white rounded-3xl w-full max-w-lg mx-auto shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300 p-6 sm:p-8 max-h-[90vh] flex flex-col" id="review-modal-content">
       <button onclick="closeReviewModal()" class="absolute top-4 right-4 p-2 text-gray-400 hover:text-brand-charcoal rounded-full hover:bg-gray-50 transition-colors">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
-      
+
       <div class="flex items-center gap-1 mb-5 text-[#E3BE86] shrink-0">
         <i data-lucide="star" class="w-4 h-4 fill-current"></i>
         <i data-lucide="star" class="w-4 h-4 fill-current"></i>
@@ -694,11 +720,11 @@
         <i data-lucide="star" class="w-4 h-4 fill-current"></i>
         <i data-lucide="star" class="w-4 h-4 fill-current"></i>
       </div>
-      
+
       <div class="overflow-y-auto pr-2 custom-scrollbar flex-1 mb-6">
         <div id="modal-review-text" class="text-gray-600 text-sm leading-relaxed font-light space-y-3"></div>
       </div>
-      
+
       <div class="shrink-0 pt-5 border-t border-gray-100">
         <p id="modal-reviewer-name" class="font-semibold text-sm text-brand-charcoal"></p>
         <p id="modal-reviewer-meta" class="text-[11px] text-gray-400 mt-0.5"></p>
@@ -706,21 +732,44 @@
     </div>
   </div>
 
+  <!-- ================= PHOTO LIGHTBOX ================= -->
+  <div id="photo-lightbox" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 opacity-0 transition-opacity duration-300">
+    <div class="absolute inset-0 bg-black/85 backdrop-blur-sm cursor-pointer" onclick="closeCardLightbox()"></div>
+
+    <button onclick="closeCardLightbox()" aria-label="Close" class="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+
+    <button onclick="showPrevCardPhoto(event)" aria-label="Previous photo" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+      <i data-lucide="chevron-left" class="w-6 h-6"></i>
+    </button>
+    <button onclick="showNextCardPhoto(event)" aria-label="Next photo" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+      <i data-lucide="chevron-right" class="w-6 h-6"></i>
+    </button>
+
+    <div id="photo-lightbox-content" class="relative z-[5] max-w-[95vw] max-h-[90vh] flex flex-col items-center gap-4 transform scale-95 transition-transform duration-300">
+      <img id="photo-lightbox-image" src="" alt="" class="max-w-[95vw] max-h-[85vh] object-contain rounded-lg shadow-2xl">
+      <span id="photo-lightbox-counter" class="text-white/80 text-xs font-semibold tracking-wide"></span>
+    </div>
+  </div>
+
   <script>
     // Rates & State
-    const RATE_VILLA1_ROOM = 86.67; 
-    const RATE_VILLA2_ROOM = 112.50; 
-    
+    const RATE_VILLA1_ROOM = 86.67;
+    const RATE_VILLA2_ROOM = 112.50;
+
     let indexGuestCount = 2;
-    let indexRoomCount = 1;
     let indexNightsCount = 1;
+    let card1RoomCount = 1;
+    const CARD1_MAX_ROOMS = 9;
+    const CARD2_TOTAL_ROOMS = 4; // Villa 2 is booked as the entire villa, always all its rooms
     let selectedCheckinStr = '';
     let selectedCheckoutStr = '';
 
     // 1. Flatpickr Initializer
     let datePickerInstance = null;
     const dateInput = document.getElementById("index-dates-input");
-    
+
     if (dateInput && typeof flatpickr !== 'undefined') {
       datePickerInstance = flatpickr("#index-dates-input", {
         mode: "range",
@@ -738,7 +787,7 @@
             selectedCheckinStr = '';
             selectedCheckoutStr = '';
           }
-          updateIndexRoomsDropdownUI();
+          // Intentionally omitting auto-update UI calls for the removed external rooms menu
           updateCardPrices();
         }
       });
@@ -761,54 +810,52 @@
         label.innerText = `${indexGuestCount} guest${indexGuestCount > 1 ? 's' : ''}`;
       }
 
-      indexRoomCount = Math.max(1, Math.ceil(indexGuestCount / 2));
+      const minRooms1 = Math.min(CARD1_MAX_ROOMS, Math.max(1, Math.ceil(indexGuestCount / 2)));
+      card1RoomCount = minRooms1;
 
-      updateIndexRoomsDropdownUI();
+      updateCardRoomsMenu(1, minRooms1, CARD1_MAX_ROOMS);
       updateCardPrices();
     }
 
-   // 3. Dynamic Rooms Dropdown (Room counts only)
-    function updateIndexRoomsDropdownUI() {
-      const menu = document.getElementById('index-rooms-menu');
-      if (!menu) return;
+    // Rooms dropdown (Villa 1 only — Villa 2 is booked as the entire villa)
+    function updateCardRoomsMenu(cardNum, minRooms, maxRooms) {
+      const menu = document.getElementById(`card${cardNum}-rooms-menu`);
+      const label = document.getElementById(`card${cardNum}-rooms-label`);
+      if (!menu || !label) return;
 
-      const minRequiredRooms = Math.ceil(indexGuestCount / 2);
       let menuHtml = '';
-
-      const maxDropdownRooms = Math.max(9, minRequiredRooms);
-      for (let i = minRequiredRooms; i <= maxDropdownRooms; i++) {
+      for (let i = minRooms; i <= maxRooms; i++) {
         menuHtml += `
-          <div onclick="selectIndexRooms(${i})" class="px-3.5 py-2.5 rounded-xl hover:bg-gray-50 flex items-center justify-between cursor-pointer text-brand-charcoal font-medium">
+          <div onclick="selectCardRooms(${cardNum}, ${i})" class="px-3.5 py-2.5 rounded-xl hover:bg-gray-50 flex items-center justify-between cursor-pointer text-brand-charcoal font-medium">
             <span>${i} room${i > 1 ? 's' : ''}</span>
           </div>
         `;
       }
       menu.innerHTML = menuHtml;
-
-      const label = document.getElementById('index-rooms-label');
-      if (label) {
-        label.innerText = `${indexRoomCount} room${indexRoomCount > 1 ? 's' : ''}`;
-      }
+      label.innerText = `${card1RoomCount} room${card1RoomCount > 1 ? 's' : ''}`;
     }
 
-    function toggleIndexRooms() {
-      const menu = document.getElementById('index-rooms-menu');
+    function toggleCardRooms(cardNum) {
+      const menu = document.getElementById(`card${cardNum}-rooms-menu`);
       if (menu) menu.classList.toggle('hidden');
     }
 
-    function selectIndexRooms(count) {
-      indexRoomCount = count;
-      updateIndexRoomsDropdownUI();
-      updateCardPrices();
-      const menu = document.getElementById('index-rooms-menu');
+    function selectCardRooms(cardNum, count) {
+      card1RoomCount = count;
+
+      const label = document.getElementById(`card${cardNum}-rooms-label`);
+      if (label) label.innerText = `${count} room${count > 1 ? 's' : ''}`;
+
+      const menu = document.getElementById(`card${cardNum}-rooms-menu`);
       if (menu) menu.classList.add('hidden');
+
+      updateCardPrices();
     }
 
     document.addEventListener('click', (e) => {
-      const container = e.target.closest('[onclick*="toggleIndexRooms"]');
-      if (!container) {
-        const menu = document.getElementById('index-rooms-menu');
-        if (menu) menu.classList.add('hidden');
+      if (!e.target.closest('[data-rooms-trigger]')) {
+        const menu1 = document.getElementById('card1-rooms-menu');
+        if (menu1) menu1.classList.add('hidden');
       }
     });
 
@@ -838,7 +885,7 @@
         if (card1PriceArea) card1PriceArea.classList.remove('opacity-30', 'pointer-events-none');
       }
 
-      const card1Rooms = Math.min(9, Math.max(1, indexRoomCount));
+      const card1Rooms = Math.min(CARD1_MAX_ROOMS, Math.max(1, card1RoomCount));
       const card1Total = Math.round(card1Rooms * RATE_VILLA1_ROOM * indexNightsCount);
       if (card1PriceEl) card1PriceEl.innerText = `$${card1Total.toLocaleString()}`;
       if (card1SubEl) card1SubEl.innerText = `(${indexNightsCount} night${indexNightsCount > 1 ? 's' : ''} x ${card1Rooms} room${card1Rooms > 1 ? 's' : ''})`;
@@ -867,10 +914,9 @@
         if (card2PriceArea) card2PriceArea.classList.remove('opacity-30', 'pointer-events-none');
       }
 
-      const card2Rooms = Math.min(4, Math.max(1, indexRoomCount));
-      const card2Total = Math.round(card2Rooms * RATE_VILLA2_ROOM * indexNightsCount);
+      const card2Total = Math.round(CARD2_TOTAL_ROOMS * RATE_VILLA2_ROOM * indexNightsCount);
       if (card2PriceEl) card2PriceEl.innerText = `$${card2Total.toLocaleString()}`;
-      if (card2SubEl) card2SubEl.innerText = `(${indexNightsCount} night${indexNightsCount > 1 ? 's' : ''} x ${card2Rooms} room${card2Rooms > 1 ? 's' : ''})`;
+      if (card2SubEl) card2SubEl.innerText = `(${indexNightsCount} night${indexNightsCount > 1 ? 's' : ''}, entire villa)`;
 
       // Links update
       const params = new URLSearchParams();
@@ -941,32 +987,32 @@
       const textEl = document.getElementById('modal-review-text');
       const nameEl = document.getElementById('modal-reviewer-name');
       const metaEl = document.getElementById('modal-reviewer-meta');
-      
+
       const fullText = document.getElementById(textId).innerHTML;
-      
+
       textEl.innerHTML = fullText;
       nameEl.innerText = name;
       metaEl.innerText = meta;
-      
+
       modal.classList.remove('hidden');
       void modal.offsetWidth; // Force reflow
       modal.classList.remove('opacity-0');
       modal.classList.add('flex', 'opacity-100');
       modalContent.classList.remove('scale-95');
       modalContent.classList.add('scale-100');
-      
+
       document.body.style.overflow = 'hidden';
     }
 
     function closeReviewModal() {
       const modal = document.getElementById('review-modal');
       const modalContent = document.getElementById('review-modal-content');
-      
+
       modal.classList.remove('opacity-100');
       modal.classList.add('opacity-0');
       modalContent.classList.remove('scale-100');
       modalContent.classList.add('scale-95');
-      
+
       setTimeout(() => {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
@@ -974,12 +1020,352 @@
       }, 300);
     }
 
+    // Photo lightbox — click either photo in a property card to view it
+    // full screen against a dark overlay; the two photos in a card page
+    // through the same lightbox with prev/next.
+    const CARD_GALLERY_IMAGES = {
+      1: [
+        { src: 'images/hero-1.jpg', alt: 'Casa del Canggu' },
+        { src: 'images/hero-5.jpg', alt: 'Deluxe Suite room' },
+      ],
+      2: [
+        { src: 'images/canggu2-13.jpg', alt: 'Casa del Canggu 2' },
+        { src: 'images/canggu2-11.jpg', alt: 'Entire villa' },
+      ],
+    };
+    // Each card's main image is itself a small carousel through the same
+    // photo set, independent of the lightbox's own position — cycling the
+    // card preview doesn't need the lightbox open, and vice versa.
+    const cardCarouselIndex = { 1: 0, 2: 0 };
+
+    // Gentle directional slide instead of an instant swap: the new photo
+    // starts nudged slightly off to one side and eases into place. `delta`
+    // (+1/-1) picks which side it slides in from, matching next vs prev.
+    function slideImageIn(imgEl, item, delta) {
+      const startOffset = delta < 0 ? '-18px' : '18px';
+      imgEl.style.transition = 'none';
+      imgEl.src = item.src;
+      imgEl.alt = item.alt;
+      imgEl.style.transform = `translateX(${startOffset})`;
+      void imgEl.offsetWidth; // force reflow so the "from" position registers before animating
+      imgEl.style.transition = 'transform 220ms ease-out';
+      imgEl.style.transform = 'translateX(0)';
+    }
+
+    function renderCardCarouselImage(cardId, delta) {
+      const imgs = CARD_GALLERY_IMAGES[cardId] || [];
+      if (!imgs.length) return;
+      const imgEl = document.getElementById(`card${cardId}-carousel-img`);
+      if (!imgEl) return;
+      const item = imgs[cardCarouselIndex[cardId]];
+      slideImageIn(imgEl, item, delta);
+    }
+
+    function stepCardCarousel(cardId, delta, e) {
+      if (e) e.stopPropagation(); // don't let the click also open the lightbox
+      const imgs = CARD_GALLERY_IMAGES[cardId] || [];
+      if (!imgs.length) return;
+      cardCarouselIndex[cardId] = (cardCarouselIndex[cardId] + delta + imgs.length) % imgs.length;
+      renderCardCarouselImage(cardId, delta);
+    }
+
+    function openCardLightboxAtCurrent(cardId) {
+      openCardLightbox(cardId, cardCarouselIndex[cardId] || 0);
+    }
+
+    let lightboxCardId = null;
+    let lightboxPhotoIndex = 0;
+
+    // `delta` picks the slide direction for next/prev; omitted (falsy) for
+    // the initial open, which sets the photo directly with no animation —
+    // the modal itself is still invisible at that point, so animating the
+    // image too would just delay it appearing once the modal fades in.
+    function renderCardLightboxPhoto(delta) {
+      const imgs = CARD_GALLERY_IMAGES[lightboxCardId] || [];
+      if (!imgs.length) return;
+      const item = imgs[lightboxPhotoIndex];
+      const imgEl = document.getElementById('photo-lightbox-image');
+      const counterEl = document.getElementById('photo-lightbox-counter');
+      if (counterEl) counterEl.innerText = `${lightboxPhotoIndex + 1} / ${imgs.length}`;
+      if (!imgEl) return;
+
+      if (!delta) {
+        imgEl.style.transition = 'none';
+        imgEl.style.transform = 'translateX(0)';
+        imgEl.src = item.src;
+        imgEl.alt = item.alt;
+        return;
+      }
+
+      slideImageIn(imgEl, item, delta);
+    }
+
+    function openCardLightbox(cardId, index) {
+      lightboxCardId = cardId;
+      lightboxPhotoIndex = index;
+      renderCardLightboxPhoto();
+
+      const modal = document.getElementById('photo-lightbox');
+      const content = document.getElementById('photo-lightbox-content');
+      if (!modal) return;
+
+      modal.classList.remove('hidden');
+      void modal.offsetWidth; // Force reflow
+      modal.classList.remove('opacity-0');
+      modal.classList.add('flex', 'opacity-100');
+      if (content) {
+        content.classList.remove('scale-95');
+        content.classList.add('scale-100');
+      }
+
+      document.body.style.overflow = 'hidden';
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function closeCardLightbox() {
+      const modal = document.getElementById('photo-lightbox');
+      const content = document.getElementById('photo-lightbox-content');
+      if (!modal) return;
+
+      modal.classList.remove('opacity-100');
+      modal.classList.add('opacity-0');
+      if (content) {
+        content.classList.remove('scale-100');
+        content.classList.add('scale-95');
+      }
+
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+      }, 300);
+    }
+
+    function showNextCardPhoto(e) {
+      if (e) e.stopPropagation();
+      const imgs = CARD_GALLERY_IMAGES[lightboxCardId] || [];
+      if (!imgs.length) return;
+      lightboxPhotoIndex = (lightboxPhotoIndex + 1) % imgs.length;
+      renderCardLightboxPhoto(1);
+    }
+
+    function showPrevCardPhoto(e) {
+      if (e) e.stopPropagation();
+      const imgs = CARD_GALLERY_IMAGES[lightboxCardId] || [];
+      if (!imgs.length) return;
+      lightboxPhotoIndex = (lightboxPhotoIndex - 1 + imgs.length) % imgs.length;
+      renderCardLightboxPhoto(-1);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('photo-lightbox');
+      if (!modal || modal.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeCardLightbox();
+      if (e.key === 'ArrowRight') showNextCardPhoto();
+      if (e.key === 'ArrowLeft') showPrevCardPhoto();
+    });
+
+    // 7. Hero search-bar layout — computed, not guessed, so it holds up
+    // across every screen size instead of relying on fixed px/vh values.
+    //
+    // Two things happen here, from the same measurements:
+    //
+    // a) The hero's eyebrow/title/subheading block and the search bar are
+    //    treated as ONE group and centered together in the hero. This is
+    //    done by nudging the text block up (via marginTop) by half of
+    //    (gap + bar height) — the exact amount needed so the combined
+    //    [text + gap + bar] stack ends up centered, the same way
+    //    `justify-content: center` would center it if they were already
+    //    a single flex group.
+    //
+    // b) `post-heading-spacer`'s height is set so that when the sticky bar
+    //    (`top: 130px`) runs out of room to stay stuck, it settles GAP
+    //    pixels below the heading — and the properties section's own
+    //    padding-top is set to that same GAP, so it also settles GAP
+    //    pixels above the first card. That settled position is computed
+    //    to be identical to where hero-search-btn's click scrolls to, so
+    //    there is no extra motion left over once you land: the bar simply
+    //    stops being sticky and becomes normal page content from then on.
+    const GAP = 32;         // gap: hero text -> bar, and heading -> bar -> card at rest
+    const STICKY_TOP = 160; // must match the `top-[160px]` class on #index-search-bar.
+                            // Also fixes the heading's clearance at landing (see
+                            // headingClearance below): STICKY_TOP = GAP + headingHeight
+                            // + headingClearance. Change any of the three together.
+
+    function layoutHeroSearchBar() {
+      const heroSection = document.getElementById('hero-section');
+      const heroText = document.getElementById('hero-text-block');
+      const bar = document.getElementById('index-search-bar');
+      const heading = document.getElementById('collection-target');
+      const spacer = document.getElementById('post-heading-spacer');
+      const heroToHeadingSpacer = document.getElementById('hero-to-heading-spacer');
+      const header = document.querySelector('header');
+      if (!heroSection || !heroText || !bar || !heading || !spacer || !heroToHeadingSpacer) return;
+
+      // Reset before measuring so this is safe to re-run on resize — and,
+      // critically, force the bar out of sticky positioning first. Once
+      // the page has scrolled at all, getBoundingClientRect() on a sticky
+      // element reflects wherever it's currently stuck (or released) to,
+      // not its true static-flow position — which is what every
+      // calculation below assumes it's reading. Without this, re-running
+      // this function after scrolling (a delayed correction, or a resize
+      // mid-scroll) measures a moving target and corrupts the result.
+      bar.style.position = 'static';
+      heroText.style.transform = '';
+      bar.style.marginTop = '0px';
+      heroToHeadingSpacer.style.height = '0px';
+
+      const heroRect = heroSection.getBoundingClientRect();
+      const heroHeight = heroRect.height;
+      const barHeight = bar.offsetHeight;
+      const textHeight = heroText.getBoundingClientRect().height;
+      const naturalTextTop = heroText.getBoundingClientRect().top - heroRect.top; // flex-centered, pre-shift, hero-relative
+
+      const headerClearance = (header ? header.getBoundingClientRect().bottom - heroRect.top : 96) + 16;
+
+      // (a) Center [hero text + gap + bar] as one group in the hero, with a
+      // floor so it never sits behind the header on a short viewport. No
+      // ceiling is needed: the bar lives OUTSIDE the hero (a sibling right
+      // after it), so it's never clipped by the hero's own overflow-hidden
+      // even if it visually extends past the hero's bottom edge — it just
+      // blends into the transition to the section below, same as before.
+      const idealTextTop = (heroHeight - (textHeight + GAP + barHeight)) / 2;
+      const clampedTextTop = Math.max(idealTextTop, headerClearance);
+
+      // Uses a transform, not margin: align-items:center computes its
+      // offset from the margin box, so a negative margin here would get
+      // partially cancelled out by the same calculation it's trying to
+      // influence. A transform is applied after layout/alignment, so the
+      // full shift lands as intended.
+      const shiftUp = naturalTextTop - clampedTextTop;
+      heroText.style.transform = `translateY(-${shiftUp}px)`;
+
+      // Place the bar directly below the (now shifted) hero text.
+      const heroTextBottom = heroText.getBoundingClientRect().bottom;
+      const barNaturalTop = bar.getBoundingClientRect().top;
+      bar.style.marginTop = `${(heroTextBottom + GAP) - barNaturalTop}px`;
+
+      // Keep the heading below the fold until the page is actually
+      // scrolled, AND give it a real, independent clearance from the
+      // hero's true bottom edge — not just "wherever the bar happens to
+      // land". Without that second part, landing the bar at its resting
+      // gap and landing the heading clear of the hero's edge become the
+      // exact same scroll position by construction, which means "hero
+      // fully scrolled past" and "heading has breathing room" can never
+      // both be true — whichever one you tune, the other moves with it.
+      // This constant is what the sticky bar's release math (below) needs
+      // to also land it correctly on arrival, so it isn't a free choice —
+      // see the comment at STICKY_TOP.
+      const headingClearance = Math.max(0, STICKY_TOP - GAP - heading.offsetHeight);
+      const barBottom = bar.getBoundingClientRect().bottom;
+      heroToHeadingSpacer.style.height = `${Math.max(0, heroRect.bottom - barBottom) + headingClearance}px`;
+
+      // Layout is fully set — restore sticky positioning now that nothing
+      // further needs to measure the bar's static-flow position.
+      bar.style.position = '';
+
+      // (b) Size the spacer so the bar's sticky release point is exactly
+      // GAP below the heading (properties' own pt-8 supplies a matching
+      // 32px below the bar, down to the first card).
+      spacer.style.height = `${barHeight + GAP}px`;
+
+      // Scroll target for the search icon: exactly where the bar comes to
+      // rest, computed from the same numbers, so clicking lands you there
+      // directly instead of at a separately-guessed offset.
+      const headingBottomDoc = heading.getBoundingClientRect().bottom + window.scrollY;
+      window.__searchBarRestScrollY = headingBottomDoc + GAP - STICKY_TOP;
+    }
+
+    function scrollToCollection(e) {
+      if (e) e.preventDefault();
+      layoutHeroSearchBar(); // keep the target fresh in case content reflowed
+      const targetY = window.__searchBarRestScrollY;
+      if (typeof targetY !== 'number') return;
+      window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+    }
+
+    // Arriving via a plain #properties / #collection-target link (e.g. the
+    // "Our Properties" nav item on the villa detail pages) uses the
+    // browser's own native anchor-jump, which knows nothing about the
+    // sticky bar or the dynamically-computed spacers above. Overriding it
+    // with the exact same, already-correct target the search icon uses
+    // keeps both entry points consistent instead of maintaining two
+    // different landing spots.
+    //
+    // This page has `scroll-smooth` on <html>, which applies to the
+    // browser's native anchor-jump too, not just our own scrollTo calls —
+    // so that native jump is itself an animation in progress when our
+    // scripts start running. Measuring layout with getBoundingClientRect()
+    // while a scroll animation is mid-flight can read `window.scrollY` and
+    // the DOM's rendered positions a frame or two out of sync with each
+    // other, corrupting every calculation downstream. Trying to time
+    // around that with fixed delays (DOMContentLoaded, load, a timeout)
+    // means racing an animation of unknown duration — sometimes losing.
+    // Instead, wait for scrolling to actually stop moving, however long
+    // that takes, before calculating or correcting anything.
+    const arrivedRequestingCollection =
+      location.hash === '#properties' || location.hash === '#collection-target';
+    if (arrivedRequestingCollection) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+
+    function whenScrollSettles(callback, quietMs, maxWaitMs) {
+      const deadline = Date.now() + maxWaitMs;
+      let lastY = window.scrollY;
+      let quietSince = Date.now();
+      function check() {
+        const y = window.scrollY;
+        const now = Date.now();
+        if (y !== lastY) {
+          lastY = y;
+          quietSince = now;
+        }
+        if (now - quietSince >= quietMs || now >= deadline) {
+          callback();
+          return;
+        }
+        requestAnimationFrame(check);
+      }
+      requestAnimationFrame(check);
+    }
+
+    function landOnCollectionIfRequested() {
+      if (!arrivedRequestingCollection) return;
+      whenScrollSettles(() => {
+        // layoutHeroSearchBar() resets a large negative margin on the bar
+        // (and the spacer below it) to remeasure from scratch. Doing that
+        // while scrolled deep into the page can momentarily shrink the
+        // document shorter than the current scroll position, which makes
+        // the browser force-clamp scrollY back down automatically — and
+        // that clamp can land between two of our own measurements,
+        // corrupting the result. At scrollY 0 there's nothing to clamp:
+        // 0 is always in bounds no matter how much the document shrinks.
+        // Instant, not smooth: this is an internal step, not something
+        // the visitor should see as a separate scroll.
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        layoutHeroSearchBar();
+        const targetY = window.__searchBarRestScrollY;
+        if (typeof targetY !== 'number') return;
+        window.scrollTo({ top: Math.max(0, targetY), behavior: 'instant' });
+      }, 150, 3000);
+    }
+
+    const heroSearchBtn = document.getElementById('hero-search-btn');
+    if (heroSearchBtn) {
+      heroSearchBtn.addEventListener('click', scrollToCollection);
+    }
+
+    window.addEventListener('resize', layoutHeroSearchBar);
+    window.addEventListener('load', layoutHeroSearchBar);
+
     document.addEventListener('DOMContentLoaded', () => {
-      updateIndexRoomsDropdownUI();
+      updateCardRoomsMenu(1, card1RoomCount, CARD1_MAX_ROOMS);
       updateCardPrices();
       if (window.lucide) {
         window.lucide.createIcons();
       }
+      layoutHeroSearchBar();
+      landOnCollectionIfRequested();
     });
   </script>
 </body>

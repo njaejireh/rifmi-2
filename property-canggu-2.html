@@ -214,12 +214,8 @@
         <div class="w-full bg-white border border-gray-200/80 rounded-3xl p-5 shadow-xl shadow-black/[0.03]">
           
           <h2 class="text-base font-bold text-[#0B2341] tracking-normal mb-3">
-            Deluxe Suite Room
+            Entire villa
           </h2>
-
-          <div class="w-full h-32 rounded-2xl bg-[#D9D9D9] mb-4 overflow-hidden">
-            <img src="images/canggu2-11.jpg" alt="Deluxe Suite Room" class="w-full h-full object-cover">
-          </div>
 
           <div class="space-y-2.5 mb-4">
             
@@ -266,20 +262,6 @@
               </div>
             </div>
 
-            <div class="w-full relative bg-white border border-gray-200/90 rounded-full px-4 h-12 flex items-center justify-between shadow-sm hover:border-gray-300 transition-colors cursor-pointer" onclick="toggleBookingRooms()">
-              <div class="flex items-center gap-2.5 min-w-0 flex-1">
-                <i data-lucide="bed" class="w-3.5 h-3.5 text-[#7492A6] shrink-0"></i>
-                <div class="flex flex-col min-w-0 justify-center">
-                  <span class="text-[9px] uppercase font-bold tracking-wider text-gray-400 leading-none mb-1">Rooms</span>
-                  <span id="booking-rooms-label" class="text-sm font-semibold text-[#0B2341] leading-tight truncate">1 room</span>
-                </div>
-              </div>
-              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-gray-400 shrink-0 ml-1.5"></i>
-
-              <div id="booking-rooms-menu" class="hidden absolute top-full left-0 mt-2 w-full bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-30 text-xs max-h-60 overflow-y-auto" onclick="event.stopPropagation()">
-              </div>
-            </div>
-
           </div>
 
           <div class="w-full h-px bg-gray-100 my-4"></div>
@@ -287,10 +269,10 @@
           <div class="mb-4">
             <div class="flex items-baseline gap-1 mb-1">
               <span class="text-xs font-normal text-[#0B2341]">Total price</span>
-              <span id="price-sub-unit" class="text-[11px] text-gray-400 font-medium">(1 night x 1 room)</span>
+              <span id="price-sub-unit" class="text-[11px] text-gray-400 font-medium">(1 night, entire villa)</span>
             </div>
             <div id="main-price" class="text-xl font-bold text-[#0B2341] tracking-tight">
-              $113 AUD
+              $450 AUD
             </div>
           </div>
 
@@ -376,51 +358,101 @@
 
     <section class="mt-20 pt-12 border-t border-gray-200/80 max-w-6xl mx-auto">
       <div class="mb-10">
-        <p class="text-xs uppercase tracking-widest font-semibold text-[#EA580C] mb-2">The Collection</p>
+        <p class="text-xs uppercase tracking-widest font-semibold text-[#AF431D] mb-2">The Collection</p>
         <h2 class="font-serif text-3xl sm:text-4xl text-brand-charcoal">Our Other Properties</h2>
       </div>
 
-      <div class="max-w-xl">
-        <a href="property-canggu.html" class="bg-white rounded-3xl overflow-hidden border border-[#F6F6F6] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer block">
-          <div class="relative h-80 overflow-hidden">
-            <img src="images/hero-4.jpg" alt="Casa del Canggu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-            <span class="absolute top-4 left-4 bg-brand-charcoal/75 backdrop-blur-sm text-white text-[10px] uppercase tracking-widest font-semibold px-3.5 py-2 rounded-full border border-white/20 leading-none">
-              Coastal Canggu
-            </span>
+      <!-- Reuses the same property card design as index.html's collection listing -->
+      <div class="bg-white border border-gray-200/80 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all">
+        <div class="flex flex-col md:flex-row gap-6 lg:gap-8 h-full">
+          <!-- Image Left -->
+          <div class="w-full md:w-[320px] h-60 md:h-auto min-h-[260px] rounded-2xl overflow-hidden bg-gray-100 shrink-0">
+            <img src="images/hero-1.jpg" alt="Casa del Canggu" class="w-full h-full object-cover">
           </div>
-          <div class="p-8 flex-1 flex flex-col justify-between">
-            <div>
-              <div class="flex items-baseline justify-between mb-1.5">
-                <h3 class="font-serif text-3xl font-bold text-brand-charcoal group-hover:text-[#EA580C] transition-colors">Casa del Canggu</h3>
-              </div>
-              <p class="text-xs text-gray-500 mb-5">Pererenan, Canggu</p>
-              
-              <div class="flex flex-wrap gap-2 text-[11px] text-brand-charcoal/80 mb-6 leading-none">
-                <span class="text-[#7996A8] bg-white border border-[#7996A8]/50 px-3 py-2 rounded-full leading-none">18 Guests</span>
-                <span class="text-[#7996A8] bg-white border border-[#7996A8]/50 px-3 py-2 rounded-full leading-none">9 bedrooms</span>
-                <span class="text-[#7996A8] bg-white border border-[#7996A8]/50 px-3 py-2 rounded-full leading-none">Private Pool</span>
-                <span class="text-[#7996A8] bg-white border border-[#7996A8]/50 px-3 py-2 rounded-full leading-none">Chef Kitchen</span>
+
+          <!-- Content Right -->
+          <div class="flex-1 flex flex-col">
+            <div class="flex-1">
+              <h3 class="font-serif text-2xl sm:text-3xl text-brand-charcoal font-normal tracking-tight mb-2">
+                Casa del Canggu
+              </h3>
+
+              <div class="flex flex-wrap gap-1.5 mb-3">
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Up to 18 guests</span>
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">9 Ensuite suites</span>
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Large pool</span>
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Outdoor kitchen & BBQ</span>
               </div>
 
-              <p class="text-xs text-gray-600 font-light leading-relaxed mb-6">
-                Modern private villa estate designed for spacious group comfort, shared dining, and tranquil island living.
+              <p class="text-xs text-gray-500 leading-relaxed font-light mb-6 line-clamp-2">
+                An expansive private estate built for retreats and large group gatherings, featuring an open-air culinary grill area, generous pool grounds, and communal dining.
               </p>
+
+              <div class="border border-gray-200/80 rounded-2xl p-3.5 bg-white mb-6">
+                <div class="flex items-center justify-between gap-3">
+                  <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-11 h-11 rounded-lg bg-gray-200 overflow-hidden shrink-0">
+                      <img src="images/hero-5.jpg" alt="Deluxe Suite room" class="w-full h-full object-cover">
+                    </div>
+                    <div class="min-w-0">
+                      <h4 class="font-semibold text-sm text-brand-charcoal truncate">Deluxe Suite room</h4>
+                      <div class="flex items-center flex-wrap gap-2 text-xs text-gray-500 font-normal mt-1 leading-none">
+                        <span class="inline-flex items-center gap-1">
+                          <i data-lucide="bed-double" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                          <span>Queen bed</span>
+                        </span>
+                        <span class="text-gray-300">·</span>
+                        <span class="inline-flex items-center gap-1">
+                          <i data-lucide="users" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                          <span>2 pax</span>
+                        </span>
+                        <span class="text-gray-300">·</span>
+                        <span class="inline-flex items-center gap-1">
+                          <i data-lucide="bath" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                          <span>Private bathroom</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="shrink-0 pl-2 relative">
+                    <div data-other-rooms-trigger onclick="toggleOtherPropRooms()" class="flex items-center justify-between gap-3 pl-4 pr-3 py-2 rounded-full border border-gray-200 bg-white cursor-pointer hover:border-brand-terracotta transition-colors">
+                      <div class="flex items-center gap-2">
+                        <i data-lucide="bed" class="w-4 h-4 text-[#7492A6] shrink-0"></i>
+                        <div class="flex flex-col text-left leading-none">
+                          <span class="text-[9px] uppercase font-bold tracking-wider text-gray-400 mb-0.5">Rooms</span>
+                          <span id="other-prop-rooms-label" class="text-xs font-semibold text-[#0B2341] whitespace-nowrap">1 room</span>
+                        </div>
+                      </div>
+                      <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 shrink-0 ml-2"></i>
+                    </div>
+                    <div id="other-prop-rooms-menu" class="hidden absolute top-full right-0 mt-2 w-36 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-50 text-xs max-h-60 overflow-y-auto" onclick="event.stopPropagation()"></div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="pt-5 border-t border-gray-100 flex items-center justify-between">
+            <!-- Card Footer -->
+            <div class="flex items-center justify-between pt-5 mt-auto border-t border-gray-100">
               <div>
-                <span class="text-[11px] text-gray-400 block font-light">From</span>
-                <span class="font-bold text-xl text-brand-charcoal">$780</span>
-                <span class="text-xs text-gray-500">AUD/ night</span>
+                <div class="flex items-baseline gap-1 mb-0.5">
+                  <span class="text-xs font-normal text-[#0B2341]">Total price</span>
+                  <span id="other-prop-sub-unit" class="text-[11px] text-gray-400 font-medium">(1 night x 1 room)</span>
+                </div>
+                <div class="flex items-baseline gap-1">
+                  <span id="other-prop-price" class="text-xl font-bold text-brand-charcoal">$87</span>
+                  <span class="text-[11px] text-[#64748B] font-medium">AUD</span>
+                </div>
               </div>
-              <span class="border border-[#EA580C] text-[#EA580C] group-hover:bg-orange-50 group-hover:border-[#C2410C] group-hover:text-[#C2410C] px-6 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all inline-block">
+
+              <a href="property-canggu.html" class="btn-secondary">
                 Explore Villa
-              </span>
+              </a>
             </div>
           </div>
-        </a>    
+        </div>
       </div>
-    </section>    
+    </section>
 
   </main>
 
@@ -574,7 +606,7 @@
       </div>
 
       <div class="p-6 overflow-y-auto modal-scroll space-y-4 flex-1">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div id="gallery-modal-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <img src="images/canggu2-1.jpg" alt="Villa Photo 1" class="w-full h-72 object-cover rounded-2xl">
           <img src="images/canggu2-2.jpg" alt="Villa Photo 2" class="w-full h-72 object-cover rounded-2xl">
           <img src="images/canggu2-3.jpg" alt="Villa Photo 3" class="w-full h-72 object-cover rounded-2xl">
@@ -602,6 +634,27 @@
     </div>
   </div>
 
+  <!-- ================= PHOTO LIGHTBOX ================= -->
+  <div id="lightbox-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 sm:p-6">
+    <div class="fixed inset-0 bg-black/95" onclick="closeLightbox()"></div>
+
+    <button type="button" onclick="closeLightbox()" aria-label="Close" class="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+
+    <button type="button" onclick="showPrevPhoto(event)" aria-label="Previous photo" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+      <i data-lucide="chevron-left" class="w-6 h-6"></i>
+    </button>
+    <button type="button" onclick="showNextPhoto(event)" aria-label="Next photo" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+      <i data-lucide="chevron-right" class="w-6 h-6"></i>
+    </button>
+
+    <div class="relative z-[5] max-w-[95vw] max-h-[90vh] flex flex-col items-center gap-4">
+      <img id="lightbox-image" src="" alt="" class="max-w-[95vw] max-h-[85vh] object-contain rounded-lg shadow-2xl">
+      <span id="lightbox-counter" class="text-white/80 text-xs font-semibold tracking-wide"></span>
+    </div>
+  </div>
+
   <footer class="bg-brand-charcoal border-t border-white/10 py-10 px-6 text-center text-xs text-gray-500 mt-20">
     <p>© 2026 Rifmi Properties Bali. All rights reserved.</p>
   </footer>
@@ -622,41 +675,15 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       renderPropertyAmenitiesGrid('property2-amenities-grid', PROPERTY_2_AMENITIES_PREVIEW);
-      updateRoomsDropdownUI();
     });
 
-    // Casa del Canggu 2: Total villa rate is $450 AUD for 4 rooms (~$112.50 AUD / room / night)
+    // Casa del Canggu 2 is booked as the entire villa, not by the room —
+    // total is always all 4 rooms at $112.50/room/night ($450/night).
     const RATE_PER_ROOM_PER_NIGHT = 112.50;
     const MAX_PROPERTY_ROOMS = 4;
     const reserveBtn = document.getElementById('reserve-btn');
 
     let currentNights = 1;
-    let selectedRoomsCount = 1;
-
-    // Dynamic rebuild of dropdown based on selected nights and minimum required rooms (2 guests per room)
-    function updateRoomsDropdownUI() {
-      const menu = document.getElementById('booking-rooms-menu');
-      if (!menu) return;
-
-      const minRequiredRooms = Math.min(MAX_PROPERTY_ROOMS, Math.ceil(propGuestCount / 2));
-      let menuHtml = '';
-
-      for (let i = minRequiredRooms; i <= MAX_PROPERTY_ROOMS; i++) {
-        const totalForRooms = Math.round(i * RATE_PER_ROOM_PER_NIGHT * currentNights);
-        menuHtml += `
-          <div onclick="selectBookingRooms(${i})" class="px-3.5 py-2.5 rounded-xl hover:bg-gray-50 flex items-center justify-between cursor-pointer text-brand-charcoal font-medium">
-            <span>${i} room${i > 1 ? 's' : ''} ($${totalForRooms.toLocaleString()} AUD)</span>
-          </div>
-        `;
-      }
-      menu.innerHTML = menuHtml;
-
-      // Update selected pill label (room count only)
-      const label = document.getElementById('booking-rooms-label');
-      if (label) {
-        label.innerText = `${selectedRoomsCount} room${selectedRoomsCount > 1 ? 's' : ''}`;
-      }
-    }
 
     function updatePrice(startDate, endDate) {
       const mainEl = document.getElementById("main-price");
@@ -667,19 +694,17 @@
         currentNights = Math.max(1, Math.ceil(diffTime / (1000 * 60 * 60 * 24)));
       }
 
-      const total = Math.round(selectedRoomsCount * RATE_PER_ROOM_PER_NIGHT * currentNights);
+      const total = Math.round(MAX_PROPERTY_ROOMS * RATE_PER_ROOM_PER_NIGHT * currentNights);
 
       if (mainEl) mainEl.innerText = `$${total.toLocaleString()} AUD`;
       if (subUnitEl) {
-        subUnitEl.innerText = `(${currentNights} night${currentNights > 1 ? 's' : ''} x ${selectedRoomsCount} room${selectedRoomsCount > 1 ? 's' : ''})`;
+        subUnitEl.innerText = `(${currentNights} night${currentNights > 1 ? 's' : ''}, entire villa)`;
       }
-      
+
       if (reserveBtn) {
         reserveBtn.disabled = false;
         reserveBtn.classList.remove('opacity-40', 'cursor-not-allowed');
       }
-
-      updateRoomsDropdownUI();
     }
 
     // Flatpickr Initializer
@@ -700,45 +725,15 @@
       });
     }
 
-    // Guest Stepper with automatic room fitting (max 2 guests per room, up to 8 guests)
+    // Guest stepper — informational only (capacity check for the whole
+    // villa); guest count no longer selects rooms, so it doesn't affect price.
     let propGuestCount = 2;
 
     function adjustPropGuests(delta) {
       propGuestCount = Math.max(1, Math.min(8, propGuestCount + delta));
       const labelEl = document.getElementById('prop-selected-guests-label');
       if (labelEl) labelEl.innerText = `${propGuestCount} guest${propGuestCount > 1 ? 's' : ''}`;
-
-      // Automatically select enough rooms to fit everyone (2 guests per room)
-      const minRequiredRooms = Math.min(MAX_PROPERTY_ROOMS, Math.ceil(propGuestCount / 2));
-      if (selectedRoomsCount < minRequiredRooms) {
-        selectedRoomsCount = minRequiredRooms;
-      }
-
-      updateRoomsDropdownUI();
-      updatePrice();
     }
-
-    // Rooms Dropdown Logic
-    function toggleBookingRooms() {
-      const menu = document.getElementById('booking-rooms-menu');
-      if (menu) menu.classList.toggle('hidden');
-    }
-
-    function selectBookingRooms(count) {
-      selectedRoomsCount = count;
-      updateRoomsDropdownUI();
-      updatePrice();
-      const menu = document.getElementById('booking-rooms-menu');
-      if (menu) menu.classList.add('hidden');
-    }
-
-    document.addEventListener('click', (e) => {
-      const container = e.target.closest('[onclick*="toggleBookingRooms"]');
-      if (!container) {
-        const menu = document.getElementById('booking-rooms-menu');
-        if (menu) menu.classList.add('hidden');
-      }
-    });
 
     // Synchronize URL Search Parameters & Refresh
     window.addEventListener('DOMContentLoaded', () => {
@@ -757,11 +752,6 @@
           propGuestCount = parsed;
           const labelEl = document.getElementById('prop-selected-guests-label');
           if (labelEl) labelEl.innerText = `${propGuestCount} guest${propGuestCount > 1 ? 's' : ''}`;
-
-          const minRequiredRooms = Math.min(MAX_PROPERTY_ROOMS, Math.ceil(propGuestCount / 2));
-          if (selectedRoomsCount < minRequiredRooms) {
-            selectedRoomsCount = minRequiredRooms;
-          }
         }
       }
 
@@ -816,10 +806,138 @@
     function openSafetyModal() { openModal('safety-modal'); }
     function closeSafetyModal() { closeModal('safety-modal'); }
 
+    // Photo lightbox — click any photo in the gallery grid to view it full
+    // screen, with arrow-key/button navigation through the rest of the set.
+    let lightboxIndex = 0;
+
+    function initGalleryLightbox() {
+      const images = Array.from(document.querySelectorAll('#gallery-modal-grid img'));
+      window.__galleryImages = images.map(img => ({ src: img.src, alt: img.alt }));
+      images.forEach((img, i) => {
+        img.classList.add('cursor-pointer', 'hover:opacity-90', 'transition-opacity');
+        img.addEventListener('click', () => openLightbox(i));
+      });
+    }
+
+    function renderLightboxImage() {
+      const imgs = window.__galleryImages || [];
+      if (!imgs.length) return;
+      const item = imgs[lightboxIndex];
+      const imgEl = document.getElementById('lightbox-image');
+      const counterEl = document.getElementById('lightbox-counter');
+      if (imgEl) { imgEl.src = item.src; imgEl.alt = item.alt; }
+      if (counterEl) counterEl.innerText = `${lightboxIndex + 1} / ${imgs.length}`;
+    }
+
+    function openLightbox(index) {
+      const imgs = window.__galleryImages || [];
+      if (!imgs.length) return;
+      lightboxIndex = index;
+      renderLightboxImage();
+      const modal = document.getElementById('lightbox-modal');
+      if (modal) modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightbox-modal');
+      if (modal) modal.classList.add('hidden');
+      // Doesn't reset body overflow: the gallery grid modal underneath is
+      // still open and needs the scroll lock kept in place.
+    }
+
+    function showNextPhoto(e) {
+      if (e) e.stopPropagation();
+      const modal = document.getElementById('lightbox-modal');
+      if (!modal || modal.classList.contains('hidden')) return;
+      const imgs = window.__galleryImages || [];
+      if (!imgs.length) return;
+      lightboxIndex = (lightboxIndex + 1) % imgs.length;
+      renderLightboxImage();
+    }
+
+    function showPrevPhoto(e) {
+      if (e) e.stopPropagation();
+      const modal = document.getElementById('lightbox-modal');
+      if (!modal || modal.classList.contains('hidden')) return;
+      const imgs = window.__galleryImages || [];
+      if (!imgs.length) return;
+      lightboxIndex = (lightboxIndex - 1 + imgs.length) % imgs.length;
+      renderLightboxImage();
+    }
+
+    document.addEventListener('DOMContentLoaded', initGalleryLightbox);
+
     document.addEventListener('keydown', (e) => {
+      const lightbox = document.getElementById('lightbox-modal');
+      if (lightbox && !lightbox.classList.contains('hidden')) {
+        if (e.key === 'Escape') { closeLightbox(); return; }
+        if (e.key === 'ArrowRight') { showNextPhoto(); return; }
+        if (e.key === 'ArrowLeft') { showPrevPhoto(); return; }
+      }
       if (e.key === 'Escape') {
         ['amenities-modal', 'gallery-modal', 'house-rules-modal', 'safety-modal'].forEach(closeModal);
       }
+    });
+
+    // "Our Other Properties" card — Casa del Canggu's room selector.
+    // Prefixed/scoped separately from this page's own booking widget above
+    // (RATE_PER_ROOM_PER_NIGHT already belongs to Casa del Canggu 2's
+    // booking form) since this teaser card prices out the other villa
+    // instead, and that one is booked by the room, not as a whole.
+    const OTHER_PROP_RATE_PER_ROOM = 86.67;
+    const OTHER_PROP_MAX_ROOMS = 9;
+    let otherPropRoomsCount = 1;
+
+    function updateOtherPropRoomsMenu() {
+      const menu = document.getElementById('other-prop-rooms-menu');
+      const label = document.getElementById('other-prop-rooms-label');
+      if (!menu || !label) return;
+
+      let menuHtml = '';
+      for (let i = 1; i <= OTHER_PROP_MAX_ROOMS; i++) {
+        menuHtml += `
+          <div onclick="selectOtherPropRooms(${i})" class="px-3.5 py-2.5 rounded-xl hover:bg-gray-50 flex items-center justify-between cursor-pointer text-brand-charcoal font-medium">
+            <span>${i} room${i > 1 ? 's' : ''}</span>
+          </div>
+        `;
+      }
+      menu.innerHTML = menuHtml;
+      label.innerText = `${otherPropRoomsCount} room${otherPropRoomsCount > 1 ? 's' : ''}`;
+    }
+
+    function updateOtherPropPrice() {
+      const priceEl = document.getElementById('other-prop-price');
+      const subEl = document.getElementById('other-prop-sub-unit');
+      const total = Math.round(otherPropRoomsCount * OTHER_PROP_RATE_PER_ROOM);
+      if (priceEl) priceEl.innerText = `$${total.toLocaleString()}`;
+      if (subEl) subEl.innerText = `(1 night x ${otherPropRoomsCount} room${otherPropRoomsCount > 1 ? 's' : ''})`;
+    }
+
+    function toggleOtherPropRooms() {
+      const menu = document.getElementById('other-prop-rooms-menu');
+      if (menu) menu.classList.toggle('hidden');
+    }
+
+    function selectOtherPropRooms(count) {
+      otherPropRoomsCount = count;
+      updateOtherPropRoomsMenu();
+      updateOtherPropPrice();
+      const menu = document.getElementById('other-prop-rooms-menu');
+      if (menu) menu.classList.add('hidden');
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('[data-other-rooms-trigger]')) {
+        const menu = document.getElementById('other-prop-rooms-menu');
+        if (menu) menu.classList.add('hidden');
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateOtherPropRoomsMenu();
+      updateOtherPropPrice();
     });
   </script>
 </body>

@@ -398,59 +398,80 @@
     <!-- ================= OUR OTHER PROPERTIES ================= -->
     <section class="mt-20 pt-12 border-t border-gray-200/80 max-w-6xl mx-auto">
       <div class="mb-10">
-        <p class="text-xs uppercase tracking-widest font-semibold text-[#EA580C] mb-2">The Collection</p>
+        <p class="text-xs uppercase tracking-widest font-semibold text-[#AF431D] mb-2">The Collection</p>
         <h2 class="font-serif text-3xl sm:text-4xl text-brand-charcoal">Our Other Properties</h2>
       </div>
 
-      <div class="max-w-xl">
-        <!-- PROPERTY 2: CASA DEL CANGGU 2 -->
-        <a href="property-canggu-2.html" class="bg-white border border-[#F6F6F6] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer block">
-          <div class="relative h-80 overflow-hidden">
-            <img src="images/canggu2-7.jpg" alt="Casa del Canggu 2" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-            <span class="absolute top-4 left-4 bg-brand-charcoal/75 backdrop-blur-sm text-white text-[10px] uppercase tracking-widest font-semibold px-3.5 py-2 rounded-full border border-white/20 leading-none">
-              Coastal Canggu
-            </span>
-            <span class="absolute top-4 right-4 bg-[#F97316] text-white text-[10px] font-semibold px-3 py-2 rounded-full shadow-sm leading-none">
-              15% Off Promo
-            </span>
+      <!-- Reuses the same property card design as index.html's collection listing -->
+      <div class="bg-white border border-gray-200/80 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all">
+        <div class="flex flex-col md:flex-row gap-6 lg:gap-8 h-full">
+          <!-- Image Left -->
+          <div class="w-full md:w-[320px] h-60 md:h-auto min-h-[260px] rounded-2xl overflow-hidden bg-gray-100 shrink-0">
+            <img src="images/canggu2-13.jpg" alt="Casa del Canggu 2" class="w-full h-full object-cover">
           </div>
-          
-          <div class="p-8 flex-1 flex flex-col justify-between">
-            <div>
-              <div class="flex items-baseline justify-between mb-1.5">
-                <h3 class="font-serif text-3xl font-bold text-brand-charcoal group-hover:text-[#EA580C] transition-colors">Casa del Canggu 2</h3>
-              </div>
-              <p class="text-xs text-gray-500 mb-5">Pererenan, Canggu</p>
-              
-              <div class="flex flex-wrap gap-2 text-[11px] text-brand-charcoal/80 mb-6 leading-none">
-                <span class="text-[#7996A8] bg-white border border-[#7996A8]/50 px-3 py-2 rounded-full leading-none">8 Guests</span>
-                <span class="text-[#7996A8] bg-white border border-[#7996A8]/50 px-3 py-2 rounded-full leading-none">3 bedrooms</span>
-                <span class="text-[#7996A8] bg-white border border-[#7996A8]/50 px-3 py-2 rounded-full leading-none">Private Pool</span>
-                <span class="text-[#7996A8] bg-white border border-[#7996A8]/50 px-3 py-2 rounded-full leading-none">Rooftop Lounge</span>
+
+          <!-- Content Right -->
+          <div class="flex-1 flex flex-col">
+            <div class="flex-1">
+              <h3 class="font-serif text-2xl sm:text-3xl text-brand-charcoal font-normal tracking-tight mb-2">
+                Casa del Canggu 2
+              </h3>
+
+              <div class="flex flex-wrap gap-1.5 mb-3">
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Up to 8 guests</span>
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">4 Ensuite suites</span>
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Intimate plunge pool</span>
+                <span class="px-2.5 py-0.5 bg-[#7996A8]/15 text-[#546E7E] rounded-full text-[10px] font-semibold tracking-wide">Indoor equipped kitchen</span>
               </div>
 
-              <p class="text-xs text-gray-600 font-light leading-relaxed mb-6">
-                Boutique modern retreat offering quiet luxury, a rooftop lounge area, private pool, and open gathering spaces.
+              <p class="text-xs text-gray-500 leading-relaxed font-light mb-6 line-clamp-2">
+                A cozy, private sanctuary with a fully equipped indoor chef's kitchen, peaceful plunge pool, and secluded living spaces designed for families and smaller parties.
               </p>
-            </div>
 
-            <div class="pt-5 border-t border-gray-100 flex items-center justify-between">
-              <div>
-                <span class="text-[11px] text-gray-400 block font-light">From</span>
-                <div class="flex items-baseline gap-1.5">
-                  <span class="text-sm text-gray-400 line-through font-light">$350</span>
-                  <span class="font-bold text-xl text-brand-charcoal">$297.5</span>
-                  <span class="text-xs text-gray-500">AUD / night</span>
+              <div class="border border-gray-200/80 rounded-2xl p-3.5 bg-white mb-6">
+                <div class="flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-lg bg-gray-200 overflow-hidden shrink-0">
+                    <img src="images/canggu2-11.jpg" alt="Entire villa" class="w-full h-full object-cover">
+                  </div>
+                  <div class="min-w-0">
+                    <h4 class="font-semibold text-sm text-brand-charcoal truncate">Entire villa</h4>
+                    <div class="flex items-center flex-wrap gap-2 text-xs text-gray-500 font-normal mt-1 leading-none">
+                      <span class="inline-flex items-center gap-1">
+                        <i data-lucide="bed-double" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                        <span>3 bedrooms</span>
+                      </span>
+                      <span class="text-gray-300">·</span>
+                      <span class="inline-flex items-center gap-1">
+                        <i data-lucide="bath" class="w-3.5 h-3.5 text-[#7492A6]"></i>
+                        <span>2 bathrooms</span>
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <span class="border border-[#EA580C] text-[#EA580C] group-hover:bg-orange-50 group-hover:border-[#C2410C] group-hover:text-[#C2410C] px-6 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all inline-block">
+            </div>
+
+            <!-- Card Footer -->
+            <div class="flex items-center justify-between pt-5 mt-auto border-t border-gray-100">
+              <div>
+                <div class="flex items-baseline gap-1 mb-0.5">
+                  <span class="text-xs font-normal text-[#0B2341]">Total price</span>
+                  <span class="text-[11px] text-gray-400 font-medium">(1 night, entire villa)</span>
+                </div>
+                <div class="flex items-baseline gap-1">
+                  <span class="text-xl font-bold text-brand-charcoal">$450</span>
+                  <span class="text-[11px] text-[#64748B] font-medium">AUD</span>
+                </div>
+              </div>
+
+              <a href="property-canggu-2.html" class="btn-secondary">
                 Explore Villa
-              </span>
+              </a>
             </div>
           </div>
-        </a>
+        </div>
       </div>
-    </section>    
+    </section>
 
   </main>
 
@@ -601,7 +622,7 @@
       </div>
 
       <div class="p-6 overflow-y-auto modal-scroll space-y-4 flex-1">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div id="gallery-modal-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <img src="images/hero-1.jpg" alt="Lounge Area" class="w-full h-72 object-cover rounded-2xl">
           <img src="images/hero-2.jpg" alt="Pool Area Night" class="w-full h-72 object-cover rounded-2xl">
           <img src="images/hero-3.jpg" alt="Sunset Balcony" class="w-full h-72 object-cover rounded-2xl">
@@ -614,6 +635,27 @@
           <img src="images/hero-10.jpg" alt="Villa Aerial View" class="w-full h-72 object-cover rounded-2xl">
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ================= PHOTO LIGHTBOX ================= -->
+  <div id="lightbox-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4 sm:p-6">
+    <div class="fixed inset-0 bg-black/95" onclick="closeLightbox()"></div>
+
+    <button type="button" onclick="closeLightbox()" aria-label="Close" class="absolute top-4 right-4 sm:top-6 sm:right-6 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
+
+    <button type="button" onclick="showPrevPhoto(event)" aria-label="Previous photo" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+      <i data-lucide="chevron-left" class="w-6 h-6"></i>
+    </button>
+    <button type="button" onclick="showNextPhoto(event)" aria-label="Next photo" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
+      <i data-lucide="chevron-right" class="w-6 h-6"></i>
+    </button>
+
+    <div class="relative z-[5] max-w-[95vw] max-h-[90vh] flex flex-col items-center gap-4">
+      <img id="lightbox-image" src="" alt="" class="max-w-[95vw] max-h-[85vh] object-contain rounded-lg shadow-2xl">
+      <span id="lightbox-counter" class="text-white/80 text-xs font-semibold tracking-wide"></span>
     </div>
   </div>
 
@@ -829,7 +871,76 @@
     function openSafetyModal() { openModal('safety-modal'); }
     function closeSafetyModal() { closeModal('safety-modal'); }
 
+    // Photo lightbox — click any photo in the gallery grid to view it full
+    // screen, with arrow-key/button navigation through the rest of the set.
+    let lightboxIndex = 0;
+
+    function initGalleryLightbox() {
+      const images = Array.from(document.querySelectorAll('#gallery-modal-grid img'));
+      window.__galleryImages = images.map(img => ({ src: img.src, alt: img.alt }));
+      images.forEach((img, i) => {
+        img.classList.add('cursor-pointer', 'hover:opacity-90', 'transition-opacity');
+        img.addEventListener('click', () => openLightbox(i));
+      });
+    }
+
+    function renderLightboxImage() {
+      const imgs = window.__galleryImages || [];
+      if (!imgs.length) return;
+      const item = imgs[lightboxIndex];
+      const imgEl = document.getElementById('lightbox-image');
+      const counterEl = document.getElementById('lightbox-counter');
+      if (imgEl) { imgEl.src = item.src; imgEl.alt = item.alt; }
+      if (counterEl) counterEl.innerText = `${lightboxIndex + 1} / ${imgs.length}`;
+    }
+
+    function openLightbox(index) {
+      const imgs = window.__galleryImages || [];
+      if (!imgs.length) return;
+      lightboxIndex = index;
+      renderLightboxImage();
+      const modal = document.getElementById('lightbox-modal');
+      if (modal) modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightbox-modal');
+      if (modal) modal.classList.add('hidden');
+      // Doesn't reset body overflow: the gallery grid modal underneath is
+      // still open and needs the scroll lock kept in place.
+    }
+
+    function showNextPhoto(e) {
+      if (e) e.stopPropagation();
+      const modal = document.getElementById('lightbox-modal');
+      if (!modal || modal.classList.contains('hidden')) return;
+      const imgs = window.__galleryImages || [];
+      if (!imgs.length) return;
+      lightboxIndex = (lightboxIndex + 1) % imgs.length;
+      renderLightboxImage();
+    }
+
+    function showPrevPhoto(e) {
+      if (e) e.stopPropagation();
+      const modal = document.getElementById('lightbox-modal');
+      if (!modal || modal.classList.contains('hidden')) return;
+      const imgs = window.__galleryImages || [];
+      if (!imgs.length) return;
+      lightboxIndex = (lightboxIndex - 1 + imgs.length) % imgs.length;
+      renderLightboxImage();
+    }
+
+    document.addEventListener('DOMContentLoaded', initGalleryLightbox);
+
     document.addEventListener('keydown', (e) => {
+      const lightbox = document.getElementById('lightbox-modal');
+      if (lightbox && !lightbox.classList.contains('hidden')) {
+        if (e.key === 'Escape') { closeLightbox(); return; }
+        if (e.key === 'ArrowRight') { showNextPhoto(); return; }
+        if (e.key === 'ArrowLeft') { showPrevPhoto(); return; }
+      }
       if (e.key === 'Escape') {
         ['amenities-modal', 'gallery-modal', 'house-rules-modal', 'safety-modal'].forEach(closeModal);
       }

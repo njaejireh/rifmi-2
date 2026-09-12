@@ -41,10 +41,11 @@ input, textarea, select, button {
   color: #AF431D !important;
   border: 1px solid #AF431D !important;
   font-family: inherit !important;
-  font-weight: 500 !important;
-  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+  line-height: 1rem !important;
   border-radius: 9999px !important;
-  padding: 0.875rem 2rem !important;
+  padding: 0.625rem 1.5rem !important;
   transition: all 0.2s ease-in-out !important;
   cursor: pointer !important;
   text-decoration: none !important;
